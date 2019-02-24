@@ -3,7 +3,8 @@ const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, LOGOUT, COMMUNITY_CHAT, 
 const { createUser, createMessage, createChat } = require('../src/Factories')
 let connectedUsers = { }
 let communityChat = createChat()
-module.exports = function(socket){
+
+module.exports = function(socket){					//individualize each connection with socket id
 	console.log("Socket Id:" + socket.id)
 	let sendMessageToChatFromUser
 	let sendTypingFromUser
@@ -14,6 +15,7 @@ module.exports = function(socket){
 			callback({ isUser:false, user:createUser({name:nickname})})
 		}
 	})
+
 	socket.on(USER_CONNECTED, (user)=>{
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
@@ -23,6 +25,7 @@ module.exports = function(socket){
 		console.log("Connected: ",connectedUsers)
 
 	})
+
 	socket.on('disconnect', ()=>{
 		if("user" in socket){
 			connectedUsers = removeUser(connectedUsers, socket.user.name)
@@ -30,21 +33,26 @@ module.exports = function(socket){
 			console.log("Disconnected: ", connectedUsers)
 		}
 	})
+
 	socket.on(LOGOUT, ()=>{
 		connectedUsers = removeUser(connectedUsers, socket.user.name)
 		io.emit(LOGOUT, connectedUsers)
 		console.log("Logged Out: ", connectedUsers)
 	})
+
 	socket.on(COMMUNITY_CHAT, (callback)=>{
 		callback(communityChat)
 	})
+
 	socket.on(MESSAGE_SENT, ({chatId, message})=>{
 		sendMessageToChatFromUser(chatId, message)
 	})
+
 	socket.on(TYPING, ({chatId, isTyping})=>{
 		sendTypingFromUser(chatId, isTyping)
 	})
 }
+
 function sendTypingToChat(user){
 	return (chatId, isTyping)=>{
 		io.emit(`${TYPING}-${chatId}`, {user, isTyping})
