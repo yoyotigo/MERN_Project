@@ -1,7 +1,6 @@
 var express = require("express")
 var mongoose = require("mongoose")
 var bodyParser = require("body-parser")
-
 var app = express()
 var http = require("http").Server(app)
 var io = require("socket.io")(http)
@@ -42,9 +41,15 @@ app.get("/chats", (req, res) => {
     })
 })
 
-io.on("connection", (socket) => {
-    console.log("Socket is connected...")
-})
+var clients = 0;
+io.on('connection', (socket)=> {
+   clients++;
+   io.sockets.emit('broadcast',{ description: 'Welcome new user! '+ clients+ " user(s) are now connected"});
+   socket.on('disconnect', ()=> {
+      clients--;
+      io.sockets.emit('broadcast',{ description: clients + ' clients connected!'});
+   });
+});
 
 var server = http.listen(3020, () => {
     console.log("Well done, now I am listening on ", server.address().port)
