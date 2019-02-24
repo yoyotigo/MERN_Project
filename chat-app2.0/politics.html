@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<title>Creating a Chat Application in Node JS with Express, MongoDB, Mongoose and Socket.io</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<style>        
+        .sidenav {
+          width: 200px;position: fixed;z-index: 1;top: 20px;left: 10px;background: #eee;overflow-x: hidden;padding: 8px 0;}
+        .sidenav a {padding: 6px 8px 6px 16px;text-decoration: none;font-size: 25px;color: #2196F3;display: block;}
+        .sidenav a:hover {color: #064579;}
+        .main {margin-left: 140px;font-size: 28px;padding: 0px 10px;}
+</style>
+
+
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <h1 class="dispaly-4">Trump Supporters Only Chatting</h1>
+        
+        <br>
+        <input id="txtName" class="form-control" placeholder="Name" type="text">
+        <br>
+        <textarea id="txtMessage" class="form-control" placeholder="Message"></textarea>
+        <br>
+        <button id="send" class="btn btn-success">Send</button>
+    </div>
+    <div id="messages"></div>
+    
+</div>
+
+<div class="sidenav">
+    <h2>Other Chatrooms</h2><br>
+        <a href="index.html">Main Chat</a> <br>
+        <a href="games.html">Gaming Chat</a>
+</div>
+
+
+
+
+
+<script>
+    var socket = io()
+    socket.on("chat", addChat)
+    $(() => {
+        getChats()
+
+        $("#send").click(() => {
+            var chatMessage = {
+                name: $("#txtName").val(), chat: $("#txtMessage").val()
+            }
+            postChat(chatMessage)
+        })
+    })
+
+    function postChat(chat) {
+        $.post("http://localhost:3020/api/history", chat)
+        $.post("http://localhost:3020/api/history/politics", chat)
+    }
+
+    function getChats() {
+        $.get("/api/history/politics", (chats) => {
+            chats.forEach(addChat)
+        })
+    }
+
+    function addChat(chatObj) {
+        $("#messages").append(`<h5>${chatObj.name} </h5><p>${chatObj.chat}</p>`);
+    }
+
+</script>
