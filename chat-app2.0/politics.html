@@ -53,7 +53,13 @@
             postChat(chatMessage)
         })
     })
-
+    socket.on('broadcast',function(data) {
+        console.log(data.description)
+        var newConnection={
+            name: 'Bot', chat: data.description
+        }
+        postChat(newConnection)
+      });
     function postChat(chat) {
         $.post("http://localhost:3020/api/history", chat)
         $.post("http://localhost:3020/api/history/politics", chat)
