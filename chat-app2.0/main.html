@@ -17,7 +17,7 @@
 <div class="container">
     <br>
     <div class="jumbotron">
-        <h1 class="dispaly-4">Gamers Only Chatting</h1>
+        <h1 class="dispaly-4">Start Chatting</h1>
         
         <br>
         <input id="txtName" class="form-control" placeholder="Name" type="text">
@@ -32,7 +32,7 @@
 
 <div class="sidenav">
     <h2>Other Chatrooms</h2><br>
-        <a href="index.html">Main Chat</a> <br>
+        <a href="games.html">Gaming Chat</a> <br>
         <a href="politics.html">Political Chat</a>
 </div>
 
@@ -43,6 +43,7 @@
 <script>
     var socket = io()
     socket.on("chat", addChat)
+    socket.on("sock", postSocket)
     $(() => {
         getChats()
 
@@ -56,14 +57,14 @@
     socket.on('broadcast',function(data) {
         console.log(data.description)
         var newConnection={
-            name: 'Bot', chat: data.description
+            name: 'Bot', chat: data.description, date:new Date()
         }
         postChat(newConnection)
       });
-
+      
     function postChat(chat) {
         $.post("http://localhost:3020/api/history", chat)
-        $.post("http://localhost:3020/api/history/games", chat)
+        $.post("http://localhost:3020/api/history/main", chat)
     }
 
     function postSocket() {
@@ -74,19 +75,20 @@
     }
 
     function getChats() {
-        $.get("/api/history/games", (chats) => {
+        $.get("/api/history/main", (chats) => {
             chats.forEach(addChat)
         })
     }
 
     function getSockets() {
-        $.get("/api/history/games", (sockets) => {
+        $.get("/api/history/main", (sockets) => {
             sockets.forEach(postSocket)
         })
     }
 
     function addChat(chatObj) {
         $("#messages").append(`<h5>${chatObj.name} </h5><p>${chatObj.chat}</p>`);
+        
     }
 
 </script>

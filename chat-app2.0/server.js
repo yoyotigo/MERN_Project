@@ -12,17 +12,14 @@ io.use(logger);
 
 
 
-
-
-
-
 var conString = "mongodb://admin:password123@ds149365.mlab.com:49365/chat-app"
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.Promise = Promise
 
+//MONGOOSE MODELS
 var Chats = mongoose.model("Chats", {
     name: String,
     chat: String,
@@ -32,11 +29,35 @@ var Sockets = mongoose.model("Sockets",{
     socket_id:String,
     date:Date
 })
+var nameSchema = new mongoose.Schema
+({
+    username: String
+})
+var User = mongoose.model("User", nameSchema);
+var userHistory = mongoose.model("userHistory",
+{
+    joinedDate: Date,
+    messages: String,
+    leftDate: Date
+})
 
 mongoose.connect(conString, { useMongoClient: true }, (err) => {
     console.log("Database connection", err)
 })
 
+
+//Post username 
+app.post("/addname", (req,res)=>
+{
+    var myData = new User(req.body);
+    myData.save()
+    .then(item => {
+    res.redirect("/main.html");
+})
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+});
+});
 //Post chats to /api/history
 app.post("/api/history", async (req, res) => {
     try {
@@ -50,6 +71,8 @@ app.post("/api/history", async (req, res) => {
         console.error(error)
     }
 })
+
+//Post sockets
 app.post("/api/sockets", async (req, res) => {
     try {
         var sock = new Sockets(req.body)
@@ -67,6 +90,15 @@ app.post("/api/sockets", async (req, res) => {
 app.get("/api/history", (req, res) => {
     Chats.find({}, (error, chats) => {
         res.json(chats)
+    })
+})
+
+//Get socket history in JSON format
+app.get("/api/sockets", (req,res)=>
+{
+    Sockets.find({}, (error,sockets)=>
+    {
+        res.json(sockets)
     })
 })
 
@@ -90,3 +122,7 @@ console.log("Socket is connected...")
 var server = http.listen(3020, () => {
     console.log("Well done, now I am listening on ", server.address().port)
 })
+
+
+
+//test code

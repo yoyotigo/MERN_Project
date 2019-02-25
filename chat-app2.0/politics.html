@@ -65,9 +65,22 @@
         $.post("http://localhost:3020/api/history/politics", chat)
     }
 
+    function postSocket() {
+        var newSocket={
+            date: new Date()
+        }
+        $.post("http://localhost:3020/api/history", newSocket)
+    }
+
     function getChats() {
         $.get("/api/history/politics", (chats) => {
             chats.forEach(addChat)
+        })
+    }
+
+    function getSockets() {
+        $.get("/api/history/games", (sockets) => {
+            sockets.forEach(postSocket)
         })
     }
 
