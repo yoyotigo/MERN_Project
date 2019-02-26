@@ -9,9 +9,6 @@ var options = {stream: fs.createWriteStream('events.log',{flags:'a'}) };
 var logger = require('socket.io-logger')(options);
 io.use(logger);
 
-
-
-
 var conString = "mongodb://admin:password123@ds149365.mlab.com:49365/chat-app"
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
@@ -19,7 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.Promise = Promise
 
-//MONGOOSE MODELS
+
+
+//MONGOOSE MODELS/SCHEMAS
 var Chats = mongoose.model("Chats", {
     name: String,
     chat: String,
@@ -46,7 +45,8 @@ mongoose.connect(conString, { useMongoClient: true }, (err) => {
 })
 
 
-//Post username 
+
+//Post username to database
 app.post("/addname", (req,res)=>
 {
     var myData = new User(req.body);
@@ -58,6 +58,7 @@ app.post("/addname", (req,res)=>
     res.status(400).send("unable to save to database");
 });
 });
+
 //Post chats to /api/history
 app.post("/api/history", async (req, res) => {
     try {
@@ -71,6 +72,36 @@ app.post("/api/history", async (req, res) => {
         console.error(error)
     }
 })
+
+
+//Get all chat history 
+app.get("/api/history", (req, res) => {
+    Chats.find({}, (error, chats) => {
+        res.json(chats)
+    })
+})
+
+//Get chat history from main chat 
+app.get("/api/history/main", (req, res) => {
+    Chats.find({}, (error, chats) => {
+        res.json(chats)
+    })
+})
+
+//Get chat history from gaming chat 
+app.get("/api/history/games", (req, res) => {
+    Chats.find({}, (error, chats) => {
+        res.json(chats)
+    })
+})
+
+//Get chat history from political chat
+app.get("/api/history/politics", (req, res) => {
+    Chats.find({}, (error, chats) => {
+        res.json(chats)
+    })
+})
+
 
 //Post sockets
 app.post("/api/sockets", async (req, res) => {
@@ -86,13 +117,6 @@ app.post("/api/sockets", async (req, res) => {
     }
 })
 
-//Get chat history in JSON format
-app.get("/api/history", (req, res) => {
-    Chats.find({}, (error, chats) => {
-        res.json(chats)
-    })
-})
-
 //Get socket history in JSON format
 app.get("/api/sockets", (req,res)=>
 {
@@ -102,12 +126,8 @@ app.get("/api/sockets", (req,res)=>
     })
 })
 
-//Get chat history from room name 
-app.get("/api/history/roomname", (req, res) => {
-    Chats.find({}, (error, chats) => {
-        res.json(chats)
-    })
-})
+
+
 
 ////socket connections
 var clients = 0;
@@ -119,10 +139,12 @@ console.log("Socket is connected...")
    });
 });
 
+
+
+
 var server = http.listen(3020, () => {
     console.log("Well done, now I am listening on ", server.address().port)
 })
 
 
 
-//test code
