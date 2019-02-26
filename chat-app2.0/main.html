@@ -17,15 +17,21 @@
 <div class="container">
     <br>
     <div class="jumbotron">
-        <h1 class="dispaly-4">Start Chatting</h1>
-        
-        <br>
-        <input id="txtName" class="form-control" placeholder="Name" type="text">
-        <br>
+    <h1 class="dispaly-4">Start Chatting</h1>
+    <form method="post" action="/mainchat">
+        <input class="form-control" id="txtMessage" type="text" name="chat" placeholder="message..."> 
+        <!--<input id="username" name="name" type="text"> {{username}}-->
+        <textarea name="name" id="username">{{username}}</textarea>
+        <input id="send" type="submit">
+    </form>
+    </div>
+    
+
+        <!--
         <textarea id="txtMessage" class="form-control" placeholder="Message"></textarea>
         <br>
         <button id="send" class="btn btn-success">Send</button>
-    </div>
+        -->
     <div id="messages"></div>
     
 </div>
@@ -49,22 +55,22 @@
 
         $("#send").click(() => {
             var chatMessage = {
-                name: $("#txtName").val(), chat: $("#txtMessage").val()
+                name: $("#username").val(), chat: $("#txtMessage").val()
             }
-            postChat(chatMessage)
+            postChat(chatMessage)  
         })
     })
     socket.on('broadcast',function(data) {
         console.log(data.description)
         var newConnection={
-            name: 'Bot', chat: data.description, date:new Date()
+            name: $("#username").val(), chat: data.description, date:new Date()
         }
         postChat(newConnection)
+        //$('#txtMessage').val('');  empty textbox after submit not working properly
       });
       
     function postChat(chat) {
-        $.post("http://localhost:3020/api/history", chat)
-        $.post("http://localhost:3020/api/history/main", chat)
+        $.post("http://localhost:3020/api/history/mainchat", chat)
     }
 
     function postSocket() {
@@ -88,7 +94,8 @@
 
     function addChat(chatObj) {
         $("#messages").append(`<h5>${chatObj.name} </h5><p>${chatObj.chat}</p>`);
-        
     }
+
+    
 
 </script>
