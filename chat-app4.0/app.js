@@ -6,7 +6,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
  bodyParser = require('body-parser'),
     users = {};
-server.listen(3000);
+server.listen(5000);
 
 mongoose.connect('mongodb://admin:password123@ds349455.mlab.com:49455/testt',{ useNewUrlParser: true }, (err)=> {
     if (err){
@@ -154,6 +154,25 @@ io.sockets.on('connection',function (socket) {
             res.json(chats)
         })
     })
+
+    app.get("/api/main", (req, res) => {
+        Chat.find({room: "Main room"}, (error, chats) => {
+            res.json(chats)
+        })
+    })
+
+    app.get("/api/games", (req, res) => {
+        Chat.find({room: "Gaming room"}, (error, chats) => {
+            res.json(chats)
+        })
+    })
+
+    app.get("/api/political", (req, res) => {
+        Chat.find({room: "Political room"}, (error, chats) => {
+            res.json(chats)
+        })
+    })
+
 
     
 
