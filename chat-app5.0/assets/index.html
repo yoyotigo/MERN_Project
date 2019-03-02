@@ -10,127 +10,161 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/hamburgrs.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
 </head>
 <body>
 
-    <div id="nickWrap">
-        <div class="pen-title">
-           <h1>Chat System</h1>  <span> <i class='fa fa-paint-brush'></i> <i class='fa fa-code'></i></span>
-        </div>
-            <div class="form">
-                <h2>Login to your account</h2>
-                <p id="nickError" style="color: #d43f3a"></p>
-                <form id="setNick" method='post' >
-                    <input id="nickName" type="text" placeholder="Username"/>
-                    <button>Login</button>
-                </form>
-            </div>
 
-    </div>
+    <!--LOGIN PAGE-->
+
+    <div class="limiter" id="nickWrap">
+        <div class="container-login100">
+        <div class="wrap-login100">
+        <div class="login100-pic js-tilt" data-tilt>
+        <img src="img/userv1.png" alt="IMG">
+        </div>
+        <form id="setNick" method='post' class="login100-form ">
+        <span class="login100-form-title">
+        Member Login
+        </span>
+        
+        <div class="wrap-input100" id="nickWrap" >
+                        <p id="nickError" style="color: #d43f3a"></p>
+                        
+                            <input id="nickName" type="text" placeholder="Username" class="input100"/>
+                            <button class="login100-form-btn">Login</button>
+                        
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>
+    
+
+
+
+
+
 
     <!-- chat -->
 
 
-    <div id="contentWrap">
+    <div class="limiter" id="contentWrap">
+            <div class="limiter" id="nickWrap">
+                    <div class="container-login100">
+             
+    <!--ONLINE USERS-->
 
-        <!-- chat template -->
-<p id="private_name"></p>
+<div class="col-md-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            ONLINE USERS
+        </div>
+        <div class="panel-body">
+            <ul class="media-list">
 
-        <div class="col-md-8">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                     CHAT HISTORY
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
+                <li class="media">
 
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="chat">
+                    <div class="media-body">
+                        <div id="users">
 
 
+                        </div>
 
-                                </div>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input placeholder="Enter a message:" size="105" id="message"></input>
-                        <span class="input-group-btn">
-                                        <button id="send" class="btn btn-info" type="button">SEND</button>
-                                    </span>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="chatWrap">
-        <!--<div id="chat">
-
-
-        </div>-->
-        </div>
-
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    ONLINE USERS
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="users">
-
-
-                                </div>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Group -->
-
-
-
-
-
-
-            <!-- Creating a group -->
-
-
-
-        </div>
-
-        <div class="col-md-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                 ChatRooms
-                </div>
-                <div class="panel-body">
-                    <ul class="media-list">
-
-                        <li class="media">
-
-                            <div class="media-body">
-                                <div id="rooms">
-                                </div>
-                            </div>
-                </div>
                 </li>
-                </ul>
-            </div>
+            </ul>
         </div>
-
     </div>
 
+
+    <!-- Rooms -->
+
+
+    <!-- Creating a room -->
+
+
+
+</div>
+
+<div class="col-md-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+         ChatRooms
+        </div>
+        <div class="panel-body">
+            <ul class="media-list">
+
+                <li class="media">
+
+                    <div class="media-body">
+                        <div id="rooms">
+                        </div>
+                    </div>
+        </div>
+        </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<!-- chat template -->
+<p id="private_name"></p>
+
+<div class="col-md-8">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+             CHAT HISTORY
+        </div>
+        <div class="panel-body">
+            <ul class="media-list">
+
+                <li class="media">
+
+                    <div class="media-body">
+                        <div id="chat">
+
+
+
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                <input placeholder="Enter a message:" size="105" id="message"></input>
+                <span class="input-group-btn">
+                                <button id="send" class="btn btn-info" type="button">SEND</button>
+                            </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chatWrap">
+<!--<div id="chat">
+
+
+</div>-->
+</div>
+
+</div>
+                    </div>
+                </div>
+
+
+        
 
 
     <script>
