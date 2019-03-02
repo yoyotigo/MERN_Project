@@ -4,7 +4,8 @@ var express = require('express'),
     Chat = require('../models/Chats.js');
 
 router.get('/api/eventlog', function(req, res, next) {
-  Elog.find(function(err, results){
+  Elog.find((err, results)=>{
+      if(err) throw err;
       res.header("Content-Type",'application/json');
       res.send(JSON.stringify(results, null, 4));
   });
@@ -16,26 +17,34 @@ router.get('/', function (req, res) {
 })
 
 router.get("/api/history", (req, res) => {
-  Chat.find({}, (error, chats) => {
-      res.json(chats)
-  })
-})
+  Chat.find({}, (err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
+  });
+});
 
 router.get("/api/main", (req, res) => {
-  Chat.find({room: "Main room"}, (error, chats) => {
-      res.json(chats)
-  })
-})
+  Chat.find({room: "Main room"}, (err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
+  });
+});
 
 router.get("/api/games", (req, res) => {
-  Chat.find({room: "Gaming room"}, (error, chats) => {
-      res.json(chats)
-  })
-})
+  Chat.find({room: "Gaming room"}, (err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
+  });
+}); 
 
 router.get("/api/political", (req, res) => {
-  Chat.find({room: "Political room"}, (error, chats) => {
-      res.json(chats)
-  })
-})
+  Chat.find({room: "Political room"}, (err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
+  });
+});
 module.exports = router;

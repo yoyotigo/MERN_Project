@@ -1,20 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var Message = require('../models/Messages.js');
+var Chats = require('../models/Chats.js');
 
 /* GET ALL MESSAGES */
 router.get('/api/history', function(req, res, next) {
-  Message.find(function (err, messages) {
-    if (err) return next(err);
-    res.json(messages);
+  Chats.find((err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
   });
-});
+}); 
 
 /* SAVE MESSAGES */
 router.post('/api/history', function(req, res, next) {
-  Message.create(req.body, function (err, post) {
+  Chats.create(req.body, function (err, chat) {
     if (err) return next(err);
-    res.json(post);
+    res.json(chat);
   });
 });
 

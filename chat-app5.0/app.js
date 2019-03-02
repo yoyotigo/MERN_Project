@@ -28,5 +28,5 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname + '/assets'))); 
 
 ////////// Routes//////////
-app.use('/messages', require('./routes/messages'));
+app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
