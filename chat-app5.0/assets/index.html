@@ -183,7 +183,6 @@
            var $media = $('#media');
            var $roombutton = $('#roombutton');
            var $roomname = $('#roomname');
-
            $nickForm.submit(function (e) {
                e.preventDefault();
                socket.emit('new user', $nickBox.val(), function (data) {
@@ -221,7 +220,6 @@
                var t;
                for ( t=0; t< s; t++) {
                    document.getElementById('box' + t).onclick = function () {
-                       //var x = document.getElementById('box' + t).innerHTML
                        alert(data);
                    }
                }

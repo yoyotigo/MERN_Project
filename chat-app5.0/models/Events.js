@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
 var EventLog = new mongoose.Schema({
-    name: String,
+    type: String,
+    name:{type:String, default:null},
     socket: String,
-    connect: {type:Date, default:Date},
+    room: String,
+    connect: {type:Date, default:null},
     disconnect: {type:Date, default:null}
 });
 module.exports = mongoose.model('EventLog', EventLog);
