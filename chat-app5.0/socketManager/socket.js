@@ -4,7 +4,8 @@ var rooms = ['Main room', 'Gaming room', 'Political room'],
     User = require('../models/Users.js'),
     Chat = require('../models/Chats.js'),
     Sockio = require('../models/Sockets.js'),
-    Elog = require('../models/Events.js')
+    Elog = require('../models/Events.js'),
+    Private = require('../models/PrivateChats.js')
 
 module.exports = (io)=>{
     io.sockets.on('connection',function (socket) {
@@ -67,25 +68,55 @@ module.exports = (io)=>{
         function updateNicknames() {
             io.sockets.emit('usernames', Object.keys(users));
         }
+
+
         //save messages to the database
         socket.on('send message', function (data) {
-        //store new message event
-            var newMessageEvent=new Elog({type:'MESSAGE SENT', name:socket.nickname, socket:socket.id, room:socket.room})
-            newMessageEvent.save((err)=>{
-                if (err) throw err;
-                console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+newMessageEvent.type+'\nCreated by: ' + newMessageEvent.name + '\nFor Socket: '+newMessageEvent.socket+'\nIn the: '+newMessageEvent.room+'\nSaved to database at: '+ newMessageEvent.connect)
-            })
-        //creates a txt file of the event
-            fs.appendFile('./eventLog.txt', newMessageEvent.socket+" has sent a new message @ "+ newMessageEvent.connect +" and created by "+ newMessageEvent.name +' in the '+newMessageEvent.room+"\n", {'flags': 'a'},(err)=>{
-                if (err) throw err;
-            })
             var msg = data.trim();
-            var newMsg = new Chat({msg: msg, nick: socket.nickname, room: socket.room})
-            newMsg.save(function (err) {
-                if (err) throw err;
-                console.log('\n==========STORE MESSAGE IN DATABASE==========\nMessage: '+msg+'\nSent by: ' + socket.nickname + '\nIn Room: '+socket.room)
-                io.sockets.in(socket.room).emit('new message', {msg: msg, nick: socket.nickname, room: socket.room})
-            })
+            if(msg.substr(0,3) === '/w '){
+                msg = msg.substr(3);
+                var ind = msg.indexOf(' ');
+                if(ind !== -1) {
+                    var name = msg.substring(0, ind);
+                    var msg  = msg.substring(ind+1);
+                    if(name in users){
+                        users[name].emit('whisper', {msg: msg ,nick: socket.nickname});
+                    //store private message in database
+                        var newPrivateMessage = new Private({sender:socket.nickname, reciever:name, msg:msg})
+                        newPrivateMessage.save((err)=>{
+                            console.log('\n==========STORE PRIVATE MESSAGE IN DATABASE==========\nSent by: '+newPrivateMessage.sender+'\nRecieved by: ' + newPrivateMessage.reciever + '\nWith Message: '+newPrivateMessage.msg+'\nSaved to database at: '+ newPrivateMessage.time)
+                    //store private message event in database
+                        var newMessageEvent=new Elog({type:'PRIVATE MESSAGE', name:socket.nickname, socket:socket.id})
+                        newMessageEvent.save((err)=>{
+                            if (err) throw err;
+                            console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+newMessageEvent.type+'\nCreated by: ' + newMessageEvent.name + '\nSent to: '+newPrivateMessage.reciever+'\nSaved to database at: '+ newMessageEvent.connect)
+                    })
+                        })
+                    }else {
+                        callback('Error! Enter a valid user');
+                    }
+                }else {
+                    callback('Error! Please enter a message for your whisper');
+                }
+            }else{
+            //store new message event
+                var newMessageEvent=new Elog({type:'MESSAGE SENT', name:socket.nickname, socket:socket.id, room:socket.room})
+                newMessageEvent.save((err)=>{
+                    if (err) throw err;
+                    console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+newMessageEvent.type+'\nCreated by: ' + newMessageEvent.name + '\nFor Socket: '+newMessageEvent.socket+'\nIn the: '+newMessageEvent.room+'\nSaved to database at: '+ newMessageEvent.connect)
+                })
+            //creates a txt file of the event
+                fs.appendFile('./eventLog.txt', newMessageEvent.socket+" has sent a new message @ "+ newMessageEvent.connect +" and created by "+ newMessageEvent.name +' in the '+newMessageEvent.room+"\n", {'flags': 'a'},(err)=>{
+                    if (err) throw err;
+                })
+                var msg = data.trim();
+                var newMsg = new Chat({msg: msg, nick: socket.nickname, room: socket.room})
+                newMsg.save(function (err) {
+                    if (err) throw err;
+                    console.log('\n==========STORE MESSAGE IN DATABASE==========\nMessage: '+msg+'\nSent by: ' + socket.nickname + '\nIn Room: '+socket.room)
+                    io.sockets.in(socket.room).emit('new message', {msg: msg, nick: socket.nickname, room: socket.room})
+                })
+            }
         })
         //handle the switching of rooms
         socket.on('switchRoom', function(newroom){
@@ -133,10 +164,6 @@ module.exports = (io)=>{
                         if (err) throw err;
                         console.log( "\n==========UPDATE SOCKET DISCONNECT IN DATABASE==========\nSocket_id: " + sock.socket_id + "\nNew disconnectTime: " + sock.disconnectTime + "\nSAVED" );
                     })
-                    //save update to txt file
-                    fs.appendFile('./eventLog.txt', sock.socket_id+" has been been updated\n", {'flags': 'a'}, (err)=>{
-                        if (err) throw err;
-                     })
                 })
             })
         //store disconnect event
