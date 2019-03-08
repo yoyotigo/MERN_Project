@@ -2,7 +2,7 @@
   "name": "chat",
   "version": "0.0.0",
   "private": true,
-  "engines":{
+  "engines": {
     "node": "10.15.2",
     "npm": "6.4.1"
   },
@@ -12,6 +12,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "bcrypt": "3.0.4",
     "body-parser": "^1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
