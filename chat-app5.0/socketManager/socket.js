@@ -8,7 +8,7 @@ var rooms = ['Main room', 'Gaming room', 'Political room'],
     Private = require('../models/PrivateChats.js')
 
 module.exports = (io)=>{
-    io.sockets.on('connection',function (socket) {
+    io.sockets.on('connection', (socket)=> {
     //store event
         var connectEvent=new Elog({type:'CONNECTION', socket:socket.id, room:'Lobby'})
         connectEvent.save((err)=>{
@@ -20,7 +20,7 @@ module.exports = (io)=>{
                 if (err) throw err;
             })            
 
-        socket.on('new user', function (data ,callback) { 
+        socket.on('new user',  (data ,callback) =>{ 
         //if a user exists in the dictionary, return an error message to client
             if (data in users){
                 callback(false);
@@ -65,13 +65,14 @@ module.exports = (io)=>{
         }
     })
 
-        function updateNicknames() {
+        const updateNicknames=()=> {
             io.sockets.emit('usernames', Object.keys(users));
         }
 
 
         //save messages to the database
-        socket.on('send message', function (data) {
+        socket.on('send message',  (data)=> {
+            
             var msg = data.trim();
             if(msg.substr(0,3) === '/w '){
                 msg = msg.substr(3);
@@ -111,7 +112,7 @@ module.exports = (io)=>{
                 })
                 var msg = data.trim();
                 var newMsg = new Chat({msg: msg, nick: socket.nickname, room: socket.room})
-                newMsg.save(function (err) {
+                newMsg.save( (err) =>{
                     if (err) throw err;
                     console.log('\n==========STORE MESSAGE IN DATABASE==========\nMessage: '+msg+'\nSent by: ' + socket.nickname + '\nIn Room: '+socket.room)
                     io.sockets.in(socket.room).emit('new message', {msg: msg, nick: socket.nickname, room: socket.room})
@@ -119,7 +120,7 @@ module.exports = (io)=>{
             }
         })
         //handle the switching of rooms
-        socket.on('switchRoom', function(newroom){
+        socket.on('switchRoom', (newroom)=>{
             socket.leave(socket.room);
         //store leave room event
             var leaveRoomEvent=new Elog({type:'LEAVE ROOM', name:socket.nickname, socket:socket.id, room:socket.room})
@@ -150,7 +151,7 @@ module.exports = (io)=>{
             socket.emit('updaterooms', rooms, newroom);
         });
         //when a user disconnects
-        socket.on('disconnect', function (data) {
+        socket.on('disconnect',  (data) =>{
         if (!socket.nickname) return;
         //remove username from dictionary to allow its reuse
         delete  users[socket.nickname];
