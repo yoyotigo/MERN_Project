@@ -1,18 +1,15 @@
 {
-  "name": "heroku",
+  "name": "chat",
   "version": "1.0.0",
   "description": "Nickolas Di Domenico: 101083325",
   "main": "app.js",
   "engines": {
-    "node": "8.11.4"
-  },
-  "scripts": {
+    "node": "8.11.4",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "heroku-postbuild": "npm install && npm run build"
   },
   "dependencies": {
-
     "body-parser": "^1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
@@ -25,15 +22,5 @@
     "passport-jwt": "^1.2.1",
     "serve-favicon": "~2.4.2",
     "socket.io": "1.7.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nCoder13D/heroku.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nCoder13D/heroku/issues"
-  },
-  "homepage": "https://github.com/nCoder13D/heroku#readme"
+  }
 }

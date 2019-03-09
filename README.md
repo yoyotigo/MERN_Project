@@ -1,9 +1,12 @@
+
+
 Nickolas Di Domenico: 101083325
 
 Tiago Sa: 101054051
 
 To run app:
 
+<<<<<<< HEAD
 > npm install
 
 > npm start
