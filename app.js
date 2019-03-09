@@ -25,8 +25,12 @@ mongoose.connect('mongodb://admin:password123@ds349455.mlab.com:49455/testt',{ u
 mongoose.Promise = global.Promise;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname + '/assets'))); 
+
 
 ////////// Routes//////////
 app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
+app.use(express.static(path.join(__dirname + '/assets'))); 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/assets/index.html'))
+    })
