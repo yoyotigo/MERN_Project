@@ -21,6 +21,11 @@
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1",
     "serve-favicon": "~2.4.2",
-    "socket.io": "1.7.3"
+    "socket.io": "^1.7.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
   }
 }
