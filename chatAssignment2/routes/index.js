@@ -13,7 +13,6 @@ router.get('/api/eventlog', function(req, res, next) {
 
 router.get('/', function (req, res) {
   res.render('index', { title: 'Express' });
-  res.sendfile(__dirname + '/assets/index.html');
 })
 
 router.get("/api/history", (req, res) => {

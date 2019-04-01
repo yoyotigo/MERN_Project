@@ -40,6 +40,8 @@ class Chat extends React.Component {
             <div>
                 <div>
                     Global Chat
+                    &emsp; &emsp; 
+                    <a href="/login">Admin Login</a>
 
                     <div className="messages">
                     {this.state.messages.map(message=>{

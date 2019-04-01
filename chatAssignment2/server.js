@@ -28,17 +28,13 @@ app.use(bodyParser.json());
 
 
 
-/*app.use('/chats', require('./routes/chats'));
+app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
-app.use(express.static(path.join(__dirname + '/assets'))); 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/assets/index.html'))
-    })
-*/
 
 
-/*
-io = socket(server);
+
+
+
 
 io.on('connection', (socket)=>{
     console.log(socket.id);
@@ -52,4 +48,3 @@ io.on('connection', (socket)=>{
     })
 });
 
-*/
