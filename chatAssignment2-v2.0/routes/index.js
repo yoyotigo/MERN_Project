@@ -7,7 +7,7 @@ router.get('/api/eventlog', function(req, res, next) {
   Elog.find((err, results)=>{
       if(err) throw err;
       res.header("Content-Type",'application/json');
-      res.send(JSON.stringify(results, null, 4));
+      res.json(results)
   });
 });
 

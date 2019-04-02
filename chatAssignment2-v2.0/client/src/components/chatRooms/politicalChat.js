@@ -9,7 +9,9 @@ class Political extends React.Component {
         this.state = {
             username: '',
             message: '',
-            messages: []
+            messages: [],
+            error:'',
+            room:'Political Room'
         };
         this.socket = io('localhost:5000');
 
@@ -25,9 +27,17 @@ class Political extends React.Component {
 
         this.sendMessage = ev => {
             ev.preventDefault();
+            this.socket.emit('NEW_USER', this.state.username,(data)=>{
+                if(!data){
+                    this.setState({error: 'That username is already taken! Please Try Again.'})
+                }else{
+                    this.setState({error: ''})
+                }
+            })
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
-                message: this.state.message
+                message: this.state.message,
+                room: this.state.room
             });
             this.setState({message: ''});
         }        
@@ -35,11 +45,14 @@ class Political extends React.Component {
 
 
 
+
+
+
     render() { 
         return (
             <div>
                 <div>
-                    Global Chat
+                    Political Chat
 
                     <div className="messages">
                     {this.state.messages.map(message=>{

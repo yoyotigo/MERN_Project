@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
-                <BrowserRouter>
+      <BrowserRouter>
       <li><Link to="/">Chat</Link></li>
       <li><Link to="/games">Games</Link></li>
       <li><Link to="/political">Political</Link></li>

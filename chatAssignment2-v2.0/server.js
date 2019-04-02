@@ -36,9 +36,8 @@ app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
 
 
-/*
-io = socket(server);
 
+/*
 io.on('connection', (socket)=>{
     console.log(socket.id);
 });
@@ -50,5 +49,4 @@ io.on('connection', (socket)=>{
         io.emit('RECEIVE_MESSAGE', data);
     })
 });
-
 */

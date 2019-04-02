@@ -1,8 +1,100 @@
-CONNECTION has been started @ Mon Apr 01 2019 14:09:25 GMT-0400 (Eastern Daylight Time) for socket OVfpNCU_a9G_rjufAAAAin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:40 GMT-0400 (Eastern Daylight Time) for socket sUWwkBP4mnYce3aRAAAAin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:44 GMT-0400 (Eastern Daylight Time) for socket 9q5j9fVnEryzKwEyAAABin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:44 GMT-0400 (Eastern Daylight Time) for socket XIfnJ6ekoZE6VcCnAAACin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:53 GMT-0400 (Eastern Daylight Time) for socket uhVZnBE4fGS81BTyAAADin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:53 GMT-0400 (Eastern Daylight Time) for socket Tx8WZOV1lJJOOGsdAAAEin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:14:54 GMT-0400 (Eastern Daylight Time) for socket 0ukl9sOpuS13X2lHAAAFin the Lobby
-CONNECTION has been started @ Tue Apr 02 2019 12:18:34 GMT-0400 (Eastern Daylight Time) for socket NxQ19bRdwENT7mpoAAAGin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:13:06 GMT-0400 (Eastern Daylight Time) for socket j5KBdiH2b_cejBMkAAAAin the Lobby
+j5KBdiH2b_cejBMkAAAA has been created @ Tue Apr 02 2019 14:13:10 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:15:25 GMT-0400 (Eastern Daylight Time) for socket GrH1CA7_WEgT3P4-AAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:15:30 GMT-0400 (Eastern Daylight Time) for socket FiLu5nM8LOzIXUPKAAABin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:16:11 GMT-0400 (Eastern Daylight Time) for socket toR39iPXkGwtvZtDAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:16:14 GMT-0400 (Eastern Daylight Time) for socket 7s8xe-CB5iMl3samAAABin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:18:05 GMT-0400 (Eastern Daylight Time) for socket LAo4ama3M2lHSvjvAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:18:08 GMT-0400 (Eastern Daylight Time) for socket aqPeTK12LbRFCnkzAAABin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:18:51 GMT-0400 (Eastern Daylight Time) for socket zrJDh7rsaMRsng4FAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:18:55 GMT-0400 (Eastern Daylight Time) for socket cnsWLeokJQjG7X8jAAABin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:20:31 GMT-0400 (Eastern Daylight Time) for socket 8yics95hVAJCeEQ7AAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:21:25 GMT-0400 (Eastern Daylight Time) for socket F5eg2Zqom-q9dITHAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:21:28 GMT-0400 (Eastern Daylight Time) for socket HRR7iXdGxh6-uOKFAAABin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:28:03 GMT-0400 (Eastern Daylight Time) for socket i3QRwMAJDgujel3hAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:28:13 GMT-0400 (Eastern Daylight Time) for socket IjhDBFdOgdEFMYV5AAABin the Lobby
+IjhDBFdOgdEFMYV5AAAB has been created @ Tue Apr 02 2019 14:28:15 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+IjhDBFdOgdEFMYV5AAAB has sent a new message @ Tue Apr 02 2019 14:28:15 GMT-0400 (Eastern Daylight Time) and created by aa in the undefined
+CONNECTION has been started @ Tue Apr 02 2019 14:30:38 GMT-0400 (Eastern Daylight Time) for socket Oy2vfkv8r2q9Tk6DAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:30:41 GMT-0400 (Eastern Daylight Time) for socket Pm6sFl9t1OeDdmdxAAABin the Lobby
+Pm6sFl9t1OeDdmdxAAAB has been created @ Tue Apr 02 2019 14:30:47 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:34:28 GMT-0400 (Eastern Daylight Time) for socket Tv7aViKdJP8QjEHjAAACin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:37:19 GMT-0400 (Eastern Daylight Time) for socket tCQfGcGCyAt2Ew9eAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:37:21 GMT-0400 (Eastern Daylight Time) for socket bpTC5T_hV8_--FtgAAABin the Lobby
+bpTC5T_hV8_--FtgAAAB has been created @ Tue Apr 02 2019 14:37:30 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+bpTC5T_hV8_--FtgAAAB has sent a new message @ Tue Apr 02 2019 14:37:30 GMT-0400 (Eastern Daylight Time) and created by a in the undefined
+CONNECTION has been started @ Tue Apr 02 2019 14:38:26 GMT-0400 (Eastern Daylight Time) for socket k_nm6k3KHY5eg3PFAAAAin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:38:29 GMT-0400 (Eastern Daylight Time) for socket rm-Ietfec-iRgbIdAAABin the Lobby
+rm-Ietfec-iRgbIdAAAB has been created @ Tue Apr 02 2019 14:38:31 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:38:57 GMT-0400 (Eastern Daylight Time) for socket pQs8QbvJEges8OVXAAACin the Lobby
+pQs8QbvJEges8OVXAAAC has been created @ Tue Apr 02 2019 14:39:01 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:39:08 GMT-0400 (Eastern Daylight Time) for socket hb1iSuFebwOVc019AAADin the Lobby
+CONNECTION has been started @ Tue Apr 02 2019 14:39:29 GMT-0400 (Eastern Daylight Time) for socket 4gJej-zUT6uTaZS8AAAEin the Lobby
+4gJej-zUT6uTaZS8AAAE has been created @ Tue Apr 02 2019 14:39:47 GMT-0400 (Eastern Daylight Time) and created by Nickolas in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:43:51 GMT-0400 (Eastern Daylight Time) for socket 5BYU7VUhPNxd2yklAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:43:54 GMT-0400 (Eastern Daylight Time) for socket 45G4A-il6FZtpCmBAAABin the Main Room
+45G4A-il6FZtpCmBAAAB has been created @ Tue Apr 02 2019 14:44:02 GMT-0400 (Eastern Daylight Time) and created by Nickolas in the Main Room
+45G4A-il6FZtpCmBAAAB has sent a new message @ Tue Apr 02 2019 14:44:02 GMT-0400 (Eastern Daylight Time) and created by Nickolas in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:44:15 GMT-0400 (Eastern Daylight Time) for socket fpb1OIyqKovLjEvCAAACin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:44:51 GMT-0400 (Eastern Daylight Time) for socket IF8FetDZh8g25Ey6AAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:44:54 GMT-0400 (Eastern Daylight Time) for socket lXV-6i8as6HehsYHAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:44:56 GMT-0400 (Eastern Daylight Time) for socket KboWObOgPVOig4gUAAACin the Main Room
+lXV-6i8as6HehsYHAAAB has been created @ Tue Apr 02 2019 14:45:07 GMT-0400 (Eastern Daylight Time) and created by T in the Main Room
+lXV-6i8as6HehsYHAAAB has sent a new message @ Tue Apr 02 2019 14:45:07 GMT-0400 (Eastern Daylight Time) and created by T in the Main Room
+KboWObOgPVOig4gUAAAC has been created @ Tue Apr 02 2019 14:45:13 GMT-0400 (Eastern Daylight Time) and created by N in the Main Room
+KboWObOgPVOig4gUAAAC has sent a new message @ Tue Apr 02 2019 14:45:13 GMT-0400 (Eastern Daylight Time) and created by N in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:47:40 GMT-0400 (Eastern Daylight Time) for socket fYVViCPdl6Yb5nszAAADin the Main Room
+fYVViCPdl6Yb5nszAAAD has been created @ Tue Apr 02 2019 14:47:47 GMT-0400 (Eastern Daylight Time) and created by A in the Main Room
+fYVViCPdl6Yb5nszAAAD has sent a new message @ Tue Apr 02 2019 14:47:47 GMT-0400 (Eastern Daylight Time) and created by A in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:58:35 GMT-0400 (Eastern Daylight Time) for socket pUI8tkNpw3iFPMgWAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:58:35 GMT-0400 (Eastern Daylight Time) for socket ezju1CWcfeRYOENgAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:58:48 GMT-0400 (Eastern Daylight Time) for socket Ddwc9YY0mtaPZkmaAAACin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:58:58 GMT-0400 (Eastern Daylight Time) for socket 8rN982fvVCX76U1iAAADin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:59:25 GMT-0400 (Eastern Daylight Time) for socket aa01XE7swquz-_qoAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 14:59:32 GMT-0400 (Eastern Daylight Time) for socket fnuYD-cZPq9fyne5AAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:01:17 GMT-0400 (Eastern Daylight Time) for socket deLL8NAF9mTSKt8MAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:01:23 GMT-0400 (Eastern Daylight Time) for socket Db2PSlNStHZSOhTPAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:02:12 GMT-0400 (Eastern Daylight Time) for socket CM4bpbRF8osgNlviAAACin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:02:17 GMT-0400 (Eastern Daylight Time) for socket UmRybYh-ht6ZtyYGAAADin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:02:43 GMT-0400 (Eastern Daylight Time) for socket gBElAIXsEmPSX9_cAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:02:48 GMT-0400 (Eastern Daylight Time) for socket lGXuG-ACqtxxt59UAAABin the Main Room
+lGXuG-ACqtxxt59UAAAB has been created @ Tue Apr 02 2019 15:02:53 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+lGXuG-ACqtxxt59UAAAB has sent a new message @ Tue Apr 02 2019 15:02:53 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:03:52 GMT-0400 (Eastern Daylight Time) for socket ihlMQ79LITYiWxEhAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:04:16 GMT-0400 (Eastern Daylight Time) for socket vjFxafs7PAQfDdDgAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:04:19 GMT-0400 (Eastern Daylight Time) for socket _5XHG0H5QWXUbYcFAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:04:23 GMT-0400 (Eastern Daylight Time) for socket QRFbSl6Gd-4t5aQ_AAABin the Main Room
+QRFbSl6Gd-4t5aQ_AAAB has been created @ Tue Apr 02 2019 15:04:27 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+QRFbSl6Gd-4t5aQ_AAAB has sent a new message @ Tue Apr 02 2019 15:04:27 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:06:28 GMT-0400 (Eastern Daylight Time) for socket JeqH7L5hceqmFLuEAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:06:31 GMT-0400 (Eastern Daylight Time) for socket QMWUcNvzlp4-AFC0AAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:06:45 GMT-0400 (Eastern Daylight Time) for socket OFlOSCrOvr9akj7xAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 15:21:06 GMT-0400 (Eastern Daylight Time) for socket Jmmu4K26-AduAFgkAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 16:55:32 GMT-0400 (Eastern Daylight Time) for socket oGhbjkn8kWIGYprcAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:46:56 GMT-0400 (Eastern Daylight Time) for socket DiJJCXiUv3U6WolsAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:52:02 GMT-0400 (Eastern Daylight Time) for socket v6gV2TP40bYCusRpAAAAin the Main Room
+v6gV2TP40bYCusRpAAAA has been created @ Tue Apr 02 2019 17:52:09 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+v6gV2TP40bYCusRpAAAA has sent a new message @ Tue Apr 02 2019 17:52:09 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:52:11 GMT-0400 (Eastern Daylight Time) for socket 2bX4-ImIi4EBvphfAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:56:22 GMT-0400 (Eastern Daylight Time) for socket HdhHiMaXrWvG099FAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:56:27 GMT-0400 (Eastern Daylight Time) for socket tGBRp8OihNHhfF9IAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:58:03 GMT-0400 (Eastern Daylight Time) for socket lvuQFfNXKEKJUVFaAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:58:09 GMT-0400 (Eastern Daylight Time) for socket lmawilTiVI8PhJiTAAABin the Main Room
+lmawilTiVI8PhJiTAAAB has been created @ Tue Apr 02 2019 17:58:43 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+lmawilTiVI8PhJiTAAAB has sent a new message @ Tue Apr 02 2019 17:58:43 GMT-0400 (Eastern Daylight Time) and created by aa in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:58:50 GMT-0400 (Eastern Daylight Time) for socket XoWs_h4Yy2OUMCLTAAACin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 17:59:26 GMT-0400 (Eastern Daylight Time) for socket CL5DHu26E4R7EDOSAAADin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 18:00:29 GMT-0400 (Eastern Daylight Time) for socket V3ueGhgby3easE6YAAAAin the Main Room
+V3ueGhgby3easE6YAAAA has been created @ Tue Apr 02 2019 18:00:38 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+V3ueGhgby3easE6YAAAA has sent a new message @ Tue Apr 02 2019 18:00:38 GMT-0400 (Eastern Daylight Time) and created by a in the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 18:00:41 GMT-0400 (Eastern Daylight Time) for socket uNADeSuIHTOVC2naAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 18:04:32 GMT-0400 (Eastern Daylight Time) for socket egXcai93rhJ4VNGWAAAAin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 18:04:36 GMT-0400 (Eastern Daylight Time) for socket pQCGqkXXBK9CJ6JFAAABin the Main Room
+CONNECTION has been started @ Tue Apr 02 2019 18:04:42 GMT-0400 (Eastern Daylight Time) for socket _ZpI2uVUwjstJDGhAAACin the Main Room
+_ZpI2uVUwjstJDGhAAAC has been created @ Tue Apr 02 2019 18:04:56 GMT-0400 (Eastern Daylight Time) and created by A in the Main Room
+_ZpI2uVUwjstJDGhAAAC has sent a new message @ Tue Apr 02 2019 18:04:56 GMT-0400 (Eastern Daylight Time) and created by A in the Main Room
+pQCGqkXXBK9CJ6JFAAAB has been created @ Tue Apr 02 2019 18:05:07 GMT-0400 (Eastern Daylight Time) and created by E in the Main Room
+pQCGqkXXBK9CJ6JFAAAB has sent a new message @ Tue Apr 02 2019 18:05:07 GMT-0400 (Eastern Daylight Time) and created by E in the Main Room
+_ZpI2uVUwjstJDGhAAAC has been disconnected @ Tue Apr 02 2019 18:05:10 GMT-0400 (Eastern Daylight Time) and created by A
+CONNECTION has been started @ Tue Apr 02 2019 18:05:10 GMT-0400 (Eastern Daylight Time) for socket ybi37C7C3-rwCsI5AAADin the Main Room
+pQCGqkXXBK9CJ6JFAAAB has been disconnected @ Tue Apr 02 2019 18:07:26 GMT-0400 (Eastern Daylight Time) and created by E

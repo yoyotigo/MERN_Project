@@ -9,14 +9,21 @@ class Chat extends React.Component {
         this.state = {
             username: '',
             message: '',
-            messages: []
+            messages: [],
+            error:'',
+            room:'Main Room'
         };
         this.socket = io('localhost:5000');
 
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
         });
-        
+        this.socket.on('UPDATE_CHAT',(data)=>{
+            addUpdate(data)
+        })
+        const addUpdate=(data)=>{
+            this.setState({messages: [...this.state.messages, data]});
+        }
         const addMessage = data => {
             console.log(data);
             this.setState({messages: [...this.state.messages, data]});
@@ -25,9 +32,17 @@ class Chat extends React.Component {
 
         this.sendMessage = ev => {
             ev.preventDefault();
+            this.socket.emit('NEW_USER', this.state.username,(data)=>{
+                if(!data){
+                    this.setState({error: 'That username is already taken! Please Try Again.'})
+                }else{
+                    this.setState({error: ''})
+                }
+            })
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
-                message: this.state.message
+                message: this.state.message,
+                room: this.state.room
             });
             this.setState({message: ''});
         }        
@@ -39,7 +54,7 @@ class Chat extends React.Component {
         return (
             <div>
                 <div>
-                    Global Chat
+                    Main Chat
 
                     <div className="messages">
                     {this.state.messages.map(message=>{
@@ -51,6 +66,8 @@ class Chat extends React.Component {
                 </div>
                 <div>
                     <input type="text" placeholder="username" value={this.state.username} onChange={ev=> this.setState({username: ev.target.value})} />
+                    <br/>
+                    <label>{this.state.error}</label>
                     <br/>
                     <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
                     <br/>
