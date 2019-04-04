@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
+import './styles/login.css';   
 
 class Login  extends Component {
 
@@ -36,7 +37,7 @@ class Login  extends Component {
             this.props.history.push("/admin");
         }
         return (
-            <div>
+            <div class="log-form2">
             <form onSubmit={this.handleSubmit}>
             <FormGroup controlId="username">
             <label>username</label>

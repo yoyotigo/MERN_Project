@@ -1,5 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
+import '../styles/chat.css';
 
 class Chat extends React.Component {
     
@@ -53,27 +54,25 @@ class Chat extends React.Component {
     render() { 
         return (
             <div>
-                <div>
-                    Main Chat
-
-                    <div className="messages">
-                    {this.state.messages.map(message=>{
-                        return(
-                            <div>{message.author}: {message.message}</div>
-                        )
-                    })}
-                    </div>
-                </div>
-                <div>
+            <div>
+                
+            <h1 className="center">Global Chat </h1>
+                
+                <div className="log-form2">
                     <input type="text" placeholder="username" value={this.state.username} onChange={ev=> this.setState({username: ev.target.value})} />
-                    <br/>
-                    <label>{this.state.error}</label>
                     <br/>
                     <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
                     <br/>
                     <button onClick={this.sendMessage} className="btn">Send</button>
                 </div>
             </div>
+            <div className="log-form">
+            {this.state.messages.map(message=>{
+                return(
+                    <div>{message.author}: {message.message}</div>
+                )
+            })}
+            </div></div>
           );
     }
 
