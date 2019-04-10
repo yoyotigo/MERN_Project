@@ -9,15 +9,17 @@ class Chat extends React.Component {
 
         this.state = {
             username: '',
+            author:'',
             message: '',
             messages: [],
             error:'',
+            isTyping:false,
             room:'Main Room'
         };
         this.socket = io('localhost:5000');
 
         this.socket.on('USER_CONNECTED', (data)=>{
-            this.setState({username:data.name})
+            this.setState({username:data})
         })
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
@@ -37,12 +39,17 @@ class Chat extends React.Component {
         this.sendMessage = ev => {
             ev.preventDefault();
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
+                author: this.props.user,
                 message: this.state.message,
                 room: this.state.room
             });
             this.setState({message: ''});
-        }        
+        }
+        this.logout=()=>{
+            this.socket.emit('LOGOUT')
+            this.setState({user:null})
+        }
+
     }
 
 
@@ -51,10 +58,10 @@ class Chat extends React.Component {
         return (
            <div>
             <div>
-                
+            
             <h1 className="center">Main Chatroom </h1>
-            <p>{this.state.username}</p>
                 <div className="log-form2">
+                <h1>{this.props.user}</h1>
                     <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
                     <br/>
                     <button onClick={this.sendMessage} className="btn">Send</button>
@@ -69,9 +76,6 @@ class Chat extends React.Component {
             </div></div>
           );
     }
-
-    
-
 }
  
 export default Chat;

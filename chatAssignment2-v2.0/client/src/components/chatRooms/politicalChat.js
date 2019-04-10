@@ -8,17 +8,27 @@ class Political extends React.Component {
 
         this.state = {
             username: '',
+            author:'',
             message: '',
             messages: [],
             error:'',
+            isTyping:false,
             room:'Political Room'
         };
         this.socket = io('localhost:5000');
 
+        this.socket.on('USER_CONNECTED', (data)=>{
+            this.setState({username:data})
+        })
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
         });
-        
+        this.socket.on('UPDATE_CHAT',(data)=>{
+            addUpdate(data)
+        })
+        const addUpdate=(data)=>{
+            this.setState({messages: [...this.state.messages, data]});
+        }
         const addMessage = data => {
             console.log(data);
             this.setState({messages: [...this.state.messages, data]});
@@ -27,37 +37,26 @@ class Political extends React.Component {
 
         this.sendMessage = ev => {
             ev.preventDefault();
-            this.socket.emit('NEW_USER', this.state.username,(data)=>{
-                if(!data){
-                    this.setState({error: 'That username is already taken! Please Try Again.'})
-                }else{
-                    this.setState({error: ''})
-                }
-            })
             this.socket.emit('SEND_MESSAGE', {
-                author: this.state.username,
+                author: this.props.user,
                 message: this.state.message,
                 room: this.state.room
             });
             this.setState({message: ''});
         }        
+
     }
-
-
-
 
 
 
     render() { 
         return (
+           <div>
             <div>
-            <div>
-                
-            <h1 className="center">Global Chat </h1>
-                
+            
+            <h1 className="center">Political Chatroom </h1>
                 <div className="log-form2">
-                    <input type="text" placeholder="username" value={this.state.username} onChange={ev=> this.setState({username: ev.target.value})} />
-                    <br/>
+                <h1>{this.props.user}</h1>
                     <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
                     <br/>
                     <button onClick={this.sendMessage} className="btn">Send</button>
@@ -72,9 +71,6 @@ class Political extends React.Component {
             </div></div>
           );
     }
-
-    
-
 }
  
 export default Political;

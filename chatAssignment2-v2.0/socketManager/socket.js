@@ -15,10 +15,6 @@ module.exports = (io)=>{
                 if (err) throw err;
                      console.log('\n==========STORE EVENT IN DATABASE==========\nSocket: '+connectEvent.socket+'\nWith type: '+connectEvent.type+"\nHas been connected @: "+ connectEvent.connect +'\nIn the: '+connectEvent.room+'\nSaved to database at: '+ connectEvent.connect)
             })
-        //creates a txt file of the event
-            fs.appendFile('./eventLog.txt', connectEvent.type+" has been started @ "+ connectEvent.connect +' for socket '+connectEvent.socket+'in the '+connectEvent.room+"\n", {'flags': 'a'},(err)=>{
-                if (err) throw err;
-            })
     
     //Verify Username
 	socket.on('VERIFY_USER', (nickname, callback)=>{
@@ -53,7 +49,7 @@ module.exports = (io)=>{
             if (err) throw err;
             console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+newUserEvent.type+'\nCreated by: ' + newUserEvent.name + '\nFor Socket: '+newUserEvent.socket+'\nIn the: '+newUserEvent.room+'\nSaved to database at: '+ newUserEvent.connect)
         })
-		io.emit('USER_CONNECTED', connectedUsers)
+		io.emit('USER_CONNECTED', user.name)
 
     })
     //User logsout
@@ -102,9 +98,26 @@ module.exports = (io)=>{
                 console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+disconnectEvent.type+'\nCreated by: ' + disconnectEvent.name + '\nFor Socket: '+disconnectEvent.socket+'\nSaved to database at: '+ disconnectEvent.disconnect)
             })
 			io.emit('USER_DISCONNECTED', connectedUsers)
-			console.log("Disconnect", connectedUsers);
 		}
     })
+    
+    socket.on('SEND_MESSAGE', (data)=>{
+        console.log(data)
+        //store new message event
+            var newMessageEvent=new Elog({type:'MESSAGE SENT', name:data['author'], socket:socket.id, room:data['room']})
+            newMessageEvent.save((err)=>{
+                if (err) throw err;
+                    console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+newMessageEvent.type+'\nCreated by: ' + newMessageEvent.name + '\nFor Socket: '+newMessageEvent.socket+'\nIn the: '+newMessageEvent.room+'\nSaved to database at: '+ newMessageEvent.connect)
+            })
+        //var msg = data.trim();
+            var newMsg = new Chat({msg: data['message'], nick: data['author'], room: data['room']})
+            newMsg.save( (err) =>{
+                if (err) throw err;
+                console.log('\n==========STORE MESSAGE IN DATABASE==========\nMessage: '+newMsg.msg+'\nSent by: ' + newMsg.nick + '\nIn Room: '+newMsg.room)
+                io.sockets.in(socket.room).emit('NEW_MESSAGE', {msg: data['message'], nick: data['author'], room: newMessageEvent.room})
+            })
+            io.emit('RECEIVE_MESSAGE', data)
+        })
 })
 
 const uuidv4 = require('uuid/v4')
@@ -134,18 +147,6 @@ const createUser = ({name = "", socketId = null } = {})=>(
 function sendTypingToChat(user){
 	return (chatId, isTyping)=>{
 		io.emit(`${TYPING}-${chatId}`, {user, isTyping})
-	}
-}
-
-/*
-* Returns a function that will take a chat id and message
-* and then emit a broadcast to the chat id.
-* @param sender {string} username of sender
-* @return function(chatId, message)
-*/
-function sendMessageToChat(sender){
-	return (chatId, message)=>{
-		io.emit(`${MESSAGE_RECIEVED}-${chatId}`, createMessage({message, sender}))
 	}
 }
 
