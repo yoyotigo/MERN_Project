@@ -16,6 +16,9 @@ class Chat extends React.Component {
         };
         this.socket = io('localhost:5000');
 
+        this.socket.on('USER_CONNECTED', (data)=>{
+            this.setState({username:data.name})
+        })
         this.socket.on('RECEIVE_MESSAGE', function(data){
             addMessage(data);
         });
@@ -33,13 +36,6 @@ class Chat extends React.Component {
 
         this.sendMessage = ev => {
             ev.preventDefault();
-            this.socket.emit('NEW_USER', this.state.username,(data)=>{
-                if(!data){
-                    this.setState({error: 'That username is already taken! Please Try Again.'})
-                }else{
-                    this.setState({error: ''})
-                }
-            })
             this.socket.emit('SEND_MESSAGE', {
                 author: this.state.username,
                 message: this.state.message,
@@ -53,14 +49,12 @@ class Chat extends React.Component {
 
     render() { 
         return (
-            <div>
+           <div>
             <div>
                 
-            <h1 className="center">Global Chat </h1>
-                
+            <h1 className="center">Main Chatroom </h1>
+            <p>{this.state.username}</p>
                 <div className="log-form2">
-                    <input type="text" placeholder="username" value={this.state.username} onChange={ev=> this.setState({username: ev.target.value})} />
-                    <br/>
                     <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
                     <br/>
                     <button onClick={this.sendMessage} className="btn">Send</button>

@@ -1,6 +1,5 @@
 const express = require('express'),
     app = express(),
-    path = require('path');
     server = require('http').createServer(app),
     io = require('socket.io')(server),
     mongoose = require('mongoose'),

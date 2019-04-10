@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import './styles/login.css';   
 
-class Login  extends Component {
+class Adminlogin  extends Component {
 
     constructor(props){
         super(props);
@@ -13,11 +13,11 @@ class Login  extends Component {
             redirectToReferrer: false
         };
     }
-
+    
     validateForm(){
         return this.state.username.length > 0 && this.state.password.length > 0;
     }
-
+    
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
@@ -37,21 +37,21 @@ class Login  extends Component {
             this.props.history.push("/admin");
         }
         return (
-            <div class="log-form2">
-            <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="username">
-            <label>username</label>
-            <FormControl autoFocus value={this.state.username} onChange={this.handleChange}/>
-            </FormGroup>
-            <FormGroup controlId="password">
-            <label>password</label>
-            <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
-            </FormGroup>
-            <Button block disabled={!this.validateForm()} type="submit">Login</Button>
-            </form>
+            <div className="log-form2">
+                <form onSubmit={this.handleSubmit}>
+                    <FormGroup controlId="username">
+                        <label>username</label>
+                    <FormControl autoFocus value={this.state.username} onChange={this.handleChange}/>
+                    </FormGroup>
+                    <FormGroup controlId="password">
+                        <label>password</label>
+                        <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
+                    </FormGroup>
+                    <Button block disabled={!this.validateForm()} type="submit">Login</Button>
+                </form>
             </div>
           );
     }
 }
  
-export default Login ;
+export default Adminlogin ;
