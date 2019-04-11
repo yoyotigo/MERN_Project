@@ -23,7 +23,7 @@ class RoomDisplayContainer extends React.Component {
         const {rooms} = this.state
         let roomName=[]
         rooms.map(room=>{
-            if(room.room !== 'main'){
+            if(room.room !== 'Main'){
                 return roomName.push(room.room)
             }
         })
@@ -31,7 +31,7 @@ class RoomDisplayContainer extends React.Component {
             <div align='center'>
             {
                 roomName.map((room, i)=>{
-                    return <button key={i} onClick={()=>this.roomChange({room})}>{room}</button>
+                    return <button key={i} onClick={this.props.onChangeValue} value={room}>{room}</button>
                 })
             }
             </div>
