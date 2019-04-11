@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import '../styles/login.css';
-import axios from "axios";
 
 class Adminlogin  extends Component {
 

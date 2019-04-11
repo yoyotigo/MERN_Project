@@ -13,11 +13,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
  const desc=(a, b, orderBy)=>{
@@ -59,23 +55,16 @@ class HistoryHeader extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { order, orderBy } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
-          </TableCell>
           {rows.map(
             row => (
               <TableCell
                 key={row.id}
-                align={row.numeric ? 'right' : 'left'}
+                align={'right'}
                 padding={row.disablePadding ? 'none' : 'default'}
                 sortDirection={orderBy === row.id ? order : false}
               >
@@ -102,9 +91,7 @@ class HistoryHeader extends React.Component {
   }
 }
 HistoryHeader.propTypes = {
-  numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -144,33 +131,10 @@ let EnhancedTableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
-          </Typography>
-        ) : (
           <Typography variant="h6" id="tableTitle">
             History Table
           </Typography>
-        )}
-      </div>
       <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
     </Toolbar>
   );
 };
@@ -211,6 +175,7 @@ class History extends React.Component{
       this.id+=1
       this.date=item['created'].substring(0,10)
       this.time=item['created'].substring(11,16)
+      console.log(item)
       return this.rows.push(this.createData(item['_id'],this.id, item['nick'], item['msg'], item['room'], this.date, this.time))
     })
     console.log(this.rows)
@@ -226,35 +191,6 @@ class History extends React.Component{
     this.setState({ order, orderBy });
   };
 
-  handleSelectAllClick = event => {
-    if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.index) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
-
-  handleClick = (event, id) => {
-    const { selected } = this.state;
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    this.setState({ selected: newSelected });
-  };
-
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -263,23 +199,19 @@ class History extends React.Component{
     this.setState({ rowsPerPage: event.target.value });
   };
 
-  isSelected = id => this.state.selected.indexOf(id) !== -1;
-
   render(){
-    const {order, orderBy, selected, rowsPerPage, page } = this.state;
+    const {order, orderBy, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.rows.length - page * rowsPerPage);
 
     return(
       <Paper>
         <button onClick={this.load}>Load Data</button>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar  />
         <div >
           <Table aria-labelledby="tableTitle">
             <HistoryHeader
-              numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={this.rows.length}
             />
@@ -287,21 +219,15 @@ class History extends React.Component{
               {stableSort(this.rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
-                  const isSelected = this.isSelected(n.index);
                   return (
                     <TableRow
                       hover
-                      onClick={event => this.handleClick(event, n.index)}
                       role="checkbox"
-                      aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.index}
-                      selected={isSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
-                      </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
+                      
+                      <TableCell align="right" component="th" scope="row" padding="none">
                         {n.index}
                       </TableCell>
                       <TableCell align="right">{n.name}</TableCell>
