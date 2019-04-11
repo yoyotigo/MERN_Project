@@ -187,7 +187,6 @@ class Room extends React.Component{
   render(){
     const {order, orderBy, rowsPerPage, data, page } = this.state;
     let rows= []
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     data.map(item=>{
       this.id+=1
       this.date=item['created'].substring(0,10)

@@ -187,7 +187,6 @@ class History extends React.Component{
   render(){
     const {order, orderBy, rowsPerPage, page, data } = this.state;
     let rows=[]
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     data.forEach(item=>{
       this.id+=1
       this.date=item['created'].substring(0,10)
@@ -215,7 +214,6 @@ class History extends React.Component{
                       tabIndex={-1}
                       key={n.index}
                     >
-                      
                       <TableCell align="right" component="th" scope="row" padding="none">
                         {n.index}
                       </TableCell>

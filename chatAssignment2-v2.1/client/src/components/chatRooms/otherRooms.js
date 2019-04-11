@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import '../styles/chat.css';
 import SendMessageContainer from '../containers/sendMessageContatiner'
 import DisplayMessageContainer from '../containers/displayMessageContainer'
+import RoomSelectionContainer from '../containers/roomSelectionContainer'
 
 class OtherRooms extends React.Component {
     
@@ -16,8 +17,9 @@ class OtherRooms extends React.Component {
             messages: [],
             error:'',
             isTyping:false,
-            room:'Main Room'
+            rooms:[]
         };
+
         this.socket = io('localhost:5000');
 
         this.socket.on('USER_CONNECTED', (data)=>{
@@ -57,6 +59,7 @@ class OtherRooms extends React.Component {
         return (
             <div>
             <h1 className="center">Chatroom </h1>
+            <RoomSelectionContainer/>
             <DisplayMessageContainer  messages={this.state.messages} /> 
             <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.sendMessage}/>            
             </div>
