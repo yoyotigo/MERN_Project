@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-import './styles/login.css';   
+import '../styles/login.css';
+import axios from "axios";
 
 class Adminlogin  extends Component {
 
@@ -8,18 +9,24 @@ class Adminlogin  extends Component {
         super(props);
 
         this.state={
+            dbuser:'',
+            dbpass:'',
             username: "",
             password: "",
             redirectToReferrer: false
         };
     }
-    
+    componentWillMount(){
+        axios.get('http://localhost:5000/api/admin')  
+            .then(response => this.setState({dbuser: response.data[0].username, dbpass:response.data[0].password}))
+    }
     validateForm(){
-        return this.state.username.length > 0 && this.state.password.length > 0;
+        return this.state.username === this.state.dbuser && this.state.password === this.state.dbpass;
     }
     
     handleChange = event => {
-        this.setState({
+        console.log([event.target.id]+"  "+ event.target.value)
+       this.setState({
             [event.target.id]: event.target.value
         });
     }

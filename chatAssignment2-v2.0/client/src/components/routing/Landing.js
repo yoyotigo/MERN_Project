@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Login from './Userlogin'
-import User from './User'
+import Login from '../login/Userlogin'
+import User from '../routing/User'
 import io from 'socket.io-client'
 const socketUrl = "http://localhost:5000"
 export default class Landing extends Component {

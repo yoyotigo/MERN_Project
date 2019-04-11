@@ -1,6 +1,8 @@
 import React from "react";
 import io from "socket.io-client";
 import '../styles/chat.css';
+import SendMessageContainer from '../containers/sendMessageContatiner'
+import DisplayMessageContainer from '../containers/displayMessageContainer'
 
 class Chat extends React.Component {
     
@@ -51,29 +53,13 @@ class Chat extends React.Component {
         }
 
     }
-
-
-
     render() { 
         return (
-           <div>
             <div>
-            
             <h1 className="center">Main Chatroom </h1>
-                <div className="log-form2">
-                <h1>{this.props.user}</h1>
-                    <input type="text" placeholder="message" value={this.state.message} onChange={ev=>this.setState({message: ev.target.value})} />
-                    <br/>
-                    <button onClick={this.sendMessage} className="btn">Send</button>
-                </div>
+            <DisplayMessageContainer  messages={this.state.messages} /> 
+            <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.sendMessage}/>            
             </div>
-            <div className="log-form">
-            {this.state.messages.map(message=>{
-                return(
-                    <div>{message.author}: {message.message}</div>
-                )
-            })}
-            </div></div>
           );
     }
 }

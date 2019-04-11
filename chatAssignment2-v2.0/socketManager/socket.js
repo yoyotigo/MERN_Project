@@ -30,7 +30,7 @@ module.exports = (io)=>{
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
 
-		sendMessageToChatFromUser = sendMessageToChat(user.name)
+		//sendMessageToChatFromUser = sendMessageToChat(user.name)
 		sendTypingFromUser = sendTypingToChat(user.name)
 		var newUser = new User({username: user.name})
 		newUser.save((err)=>{

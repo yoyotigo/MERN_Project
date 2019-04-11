@@ -49,20 +49,3 @@ io.on('connection', (socket)=>{
     })
 });
 */
-
-app.get('/api/admin', (req,res,next)=>{
-    Admin.find()
-    .exec(function(error,admin){
-        if (error){
-            return next(error);
-        }else{
-            if (admin === null){
-                var err = new Error('no');
-                err.status=400;
-                return next(err);
-            }else{
-                return res.send(admin)
-            }
-        }
-    })
-})
