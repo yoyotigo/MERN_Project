@@ -3,7 +3,8 @@ import io from "socket.io-client";
 import '../styles/chat.css';
 import SendMessageContainer from '../containers/sendMessageContatiner'
 import DisplayMessageContainer from '../containers/displayMessageContainer'
-class Political extends React.Component {
+
+class OtherRooms extends React.Component {
     
     constructor(props){
         super(props);
@@ -15,7 +16,7 @@ class Political extends React.Component {
             messages: [],
             error:'',
             isTyping:false,
-            room:'Political Room'
+            room:'Main Room'
         };
         this.socket = io('localhost:5000');
 
@@ -45,16 +46,17 @@ class Political extends React.Component {
                 room: this.state.room
             });
             this.setState({message: ''});
-        }        
+        }
+        this.logout=()=>{
+            this.socket.emit('LOGOUT')
+            this.setState({user:null})
+        }
 
     }
-
-
-
     render() { 
         return (
             <div>
-            <h1 className="center">Political Chatroom </h1>
+            <h1 className="center">Chatroom </h1>
             <DisplayMessageContainer  messages={this.state.messages} /> 
             <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.sendMessage}/>            
             </div>
@@ -62,4 +64,4 @@ class Political extends React.Component {
     }
 }
  
-export default Political;
+export default OtherRooms;
