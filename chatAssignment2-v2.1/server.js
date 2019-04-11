@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
 
 app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
+app.use('/', require('./routes/rooms'));
 
 
 

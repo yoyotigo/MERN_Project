@@ -169,14 +169,17 @@ class Room extends React.Component{
   date=''
   time=''
   load(){
-    axios.get("http://localhost:5000/api/rooms")
+    axios.get("http://localhost:5000/api/room")
     .then(hist => {
       this.setState({data: hist.data})
     })
     this.state.data.map(item=>{
+      console.log(item)
       this.id+=1
       this.date=item['created'].substring(0,10)
-      this.time=item['created'].substring(11,16)
+      this.time=item['edited'].substring(11,16)
+      console.log(this.date)
+      console.log(this.time)
       return this.rows.push(this.createData(this.id, item['room'],this.date, this.time, item['status']))
     })
     console.log(this.rows)
@@ -234,8 +237,8 @@ class Room extends React.Component{
                         {n.id}
                       </TableCell>
                       <TableCell align="right">{n.room}</TableCell>
-                      <TableCell align="right">{n.date}</TableCell>
-                      <TableCell align="right">{n.time}</TableCell>
+                      <TableCell align="right">{n.created}</TableCell>
+                      <TableCell align="right">{n.edited}</TableCell>
                       <TableCell align="right">{n.status}</TableCell>
                       <TableCell align="right"><button >Edit</button></TableCell>
                     </TableRow>

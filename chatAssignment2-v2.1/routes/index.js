@@ -13,13 +13,6 @@ router.get('/api/eventlog', function(req, res, next) {
   });
 });
 
-router.get('/api/rooms', function(req, res, next) {
-  Room.find((err, results)=>{
-      if(err) throw err;
-      res.header("Content-Type",'application/json');
-      res.json(results)
-  });
-});
 
 router.get('/api/admin', (req,res,next)=>{
   Admin.find()
