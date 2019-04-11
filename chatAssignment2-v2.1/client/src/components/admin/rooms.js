@@ -142,17 +142,11 @@ let EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired
 };
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Room extends React.Component{
-  constructor(props) {
-    super(props);
-    this.load=this.load.bind(this)
-    
-}    
   state = {
     order: 'asc',
     orderBy: 'id',
@@ -165,38 +159,22 @@ class Room extends React.Component{
     return {id,room, created, edited, status};
   }
   id=0
-  rows= []
   date=''
   time=''
-  load(){
+  componentDidMount(){
     axios.get("http://localhost:5000/api/room")
     .then(hist => {
       this.setState({data: hist.data})
     })
-    this.state.data.map(item=>{
-      console.log(item)
-      this.id+=1
-      this.date=item['created'].substring(0,10)
-      this.time=item['edited'].substring(11,16)
-      console.log(this.date)
-      console.log(this.time)
-      return this.rows.push(this.createData(this.id, item['room'],this.date, this.time, item['status']))
-    })
-    console.log(this.rows)
   }
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
-
     this.setState({ order, orderBy });
   };
-
-
-  
 
   handleChangePage = (event, page) => {
     this.setState({ page });
@@ -207,9 +185,15 @@ class Room extends React.Component{
   };
 
   render(){
-    const {order, orderBy, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.rows.length - page * rowsPerPage);
-
+    const {order, orderBy, rowsPerPage, data, page } = this.state;
+    let rows= []
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    data.map(item=>{
+      this.id+=1
+      this.date=item['created'].substring(0,10)
+      this.time=item['edited'].substring(11,16)
+      return rows.push(this.createData(this.id, item['room'],this.date, this.time, item['status']))
+    })
     return(
       <Paper>
         <button onClick={this.load}>Load Data</button>
@@ -220,16 +204,15 @@ class Room extends React.Component{
               order={order}
               orderBy={orderBy}
               onRequestSort={this.handleRequestSort}
-              rowCount={this.rows.length}
+              rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(this.rows, getSorting(order, orderBy))
+              {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   return (
                     <TableRow
                       hover
-                      role="checkbox"
                       tabIndex={-1}
                       key={n.id}
                     >
@@ -244,18 +227,14 @@ class Room extends React.Component{
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
+              
             </TableBody>
           </Table>
         </div>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={this.rows.length}
+          count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -273,5 +252,3 @@ class Room extends React.Component{
 }
 
 export default Room;
-
- 

@@ -140,17 +140,11 @@ let EnhancedTableToolbar = props => {
 };
 
 EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
+  classes: PropTypes.object.isRequired
 };
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class History extends React.Component{
-  constructor(props) {
-    super(props);
-    this.load=this.load.bind(this)
-    
-}    
   state = {
     order: 'asc',
     orderBy: 'id',
@@ -163,22 +157,13 @@ class History extends React.Component{
     return {uuid, index, name, message, room, date, time};
   }
   id=0
-  rows= []
   date=''
   time=''
-  load(){
+  componentDidMount(){
     axios.get("http://localhost:5000/api/history")
     .then(hist => {
       this.setState({data: hist.data})
     })
-    this.state.data.map(item=>{
-      this.id+=1
-      this.date=item['created'].substring(0,10)
-      this.time=item['created'].substring(11,16)
-      console.log(item)
-      return this.rows.push(this.createData(item['_id'],this.id, item['nick'], item['msg'], item['room'], this.date, this.time))
-    })
-    console.log(this.rows)
   }
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -200,12 +185,17 @@ class History extends React.Component{
   };
 
   render(){
-    const {order, orderBy, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, this.rows.length - page * rowsPerPage);
-
+    const {order, orderBy, rowsPerPage, page, data } = this.state;
+    let rows=[]
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    data.forEach(item=>{
+      this.id+=1
+      this.date=item['created'].substring(0,10)
+      this.time=item['created'].substring(11,16)
+      return rows.push(this.createData(item['_id'],this.id, item['nick'], item['msg'], item['room'], this.date, this.time))
+    })
     return(
       <Paper>
-        <button onClick={this.load}>Load Data</button>
         <EnhancedTableToolbar  />
         <div >
           <Table aria-labelledby="tableTitle">
@@ -213,16 +203,15 @@ class History extends React.Component{
               order={order}
               orderBy={orderBy}
               onRequestSort={this.handleRequestSort}
-              rowCount={this.rows.length}
+              rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(this.rows, getSorting(order, orderBy))
+              {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(n => {
                   return (
                     <TableRow
                       hover
-                      role="checkbox"
                       tabIndex={-1}
                       key={n.index}
                     >
@@ -238,18 +227,14 @@ class History extends React.Component{
                     </TableRow>
                   );
                 })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
+              
             </TableBody>
           </Table>
         </div>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={this.rows.length}
+          count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{
@@ -267,180 +252,3 @@ class History extends React.Component{
 }
 
 export default History;
-
- /*<table><button onClick={this.add}>Add</button>
-                      <tbody>
-                      <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Message</th>
-                        <th>Room</th>
-                        <th>Created</th>
-                      </tr>
-                      <tr>
-                        <td></td>
-                      </tr>
-                      </tbody>
-                  </table>/
-      /*constructor(props) {
-        super(props);
-    
-        this.state={
-            history:[],
-            name:'',
-            message:'',
-            id:'',
-            room:''
-        }
-        this.load=this.load.bind(this)
-        
-    }    
-      
-    createData(id, name, message, room, date) {
-      return { id, name, message, room, date};
-    }
-      id=0
-      rows= []   
-    load(){
-      axios.get("http://localhost:5000/api/history")
-      .then(hist => {
-        this.setState({history: hist.data})
-      })
-      this.state.history.map(item=>{
-        this.id+=1
-        this.rows.push(this.createData(this.id, item['nick'], item['msg'], item['room'], item['created']))
-      })
-    }
-    render() { 
-        return (
-          
-          <Paper >
-             <button onClick={this.load}>Load Table</button>
-          <Table >
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Message</TableCell>
-                <TableCell align="right">Room</TableCell>
-                <TableCell align="right">Created</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.rows.map(row => (
-                <TableRow >
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.message}</TableCell>
-                  <TableCell align="right">{row.room}</TableCell>
-                  <TableCell align="right">{row.date}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Paper>
-          );
-    }
-}*/
-
-
-
-
-
-/////////////////////////////////
-/* counter = 0;
-  desc=(a, b, orderBy)=> {
-    if (b[orderBy] < a[orderBy]) {
-      return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-      return 1;
-    }
-    return 0;
-  }
-  stableSort=(array, cmp)=>{
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-      const order = cmp(a[0], b[0]);
-      if (order !== 0) return order;
-      return a[1] - b[1];
-    });
-    return stabilizedThis.map(el => el[0]);
-  }
-  getSorting=(order, orderBy)=>{
-    return order === 'desc' ? (a, b) => this.desc(a, b, orderBy) : (a, b) => -this.desc(a, b, orderBy);
-  }
-  constructor(props){
-    super(props);
-
-    this.state={
-        history:[],
-    }
-    this.load=this.load.bind(this)
-  }
-  rows= []   
-  createData(name, message, room, date){
-    this.counter += 1;
-    return { id: this.counter,  name, message, room, date};
-  }
-  load(){
-    axios.get("http://localhost:5000/api/history")
-    .then(hist => {
-      this.setState({history: hist.data})
-    })
-    this.state.history.map(item=>{
-      this.id+=1
-      this.rows.push(this.createData(this.id, item['nick'], item['msg'], item['room'], item['created']))
-    })
-  }
-  createSortHandler = property => event => {
-    this.props.onRequestSort(event, property);
-  };
-
-render(){
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
-  return(
-    <div>
-    <button onClick={this.load}>Load Data</button>
-<TableHead>
-        <TableRow>
-          <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
-          </TableCell>
-          {this.rows.map(
-            row => (
-              <TableCell
-                key={row.id}
-                align={row.numeric ? 'right' : 'left'}
-                padding={row.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === row.id ? order : false}
-              >
-                <Tooltip
-                  title="Sort"
-                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={orderBy === row.id}
-                    direction={order}
-                    onClick={this.createSortHandler(row.id)}
-                  >
-                    {row.label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-            ),
-            this,
-          )}
-        </TableRow>
-      </TableHead></div>
-    );
-  }
-}
-*/
