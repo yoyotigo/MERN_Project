@@ -57,13 +57,13 @@ class OtherRooms extends React.Component {
     }
     render() { 
         const {room} = this.state
-        this.handleRoomName = e =>{
+        this.handleRoom = e =>{
             this.setState({room:e.target.value})
         }
         return (
             <div>
             <h1 align="center">{room} Chatroom</h1>
-            <RoomSelectionContainer value={this.state.room} onChangeValue={this.handleRoomName}/>
+            <RoomSelectionContainer value={this.state.room} onChangeValue={this.handleRoom}/>
             <DisplayMessageContainer  messages={this.state.messages} /> 
             <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.sendMessage}/>            
             </div>
