@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Login from '../login/Userlogin'
+import Userlogin from '../login/Userlogin'
 import User from '../routing/User'
 import io from 'socket.io-client'
 const socketUrl = "http://localhost:5000"
@@ -37,6 +37,8 @@ export default class Landing extends Component {
 	  */	
 	  setUser = (user)=>{
 		  const { socket } = this.state
+		  console.log(socket)
+		  socket.emit('CONNECTED')
 		  socket.emit('USER_CONNECTED', user);
 		  this.setState({user})
 	  }
@@ -58,7 +60,7 @@ export default class Landing extends Component {
 			  <div className="container">
 				  {
 					  !user ?	
-					  <Login socket={socket} setUser={this.setUser} />
+					  <Userlogin socket={socket} setUser={this.setUser} />
 					  :
 					  <User socket={socket} user={user} logout={this.logout}/>
 				  }

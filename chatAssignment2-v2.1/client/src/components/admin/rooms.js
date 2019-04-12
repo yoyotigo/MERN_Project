@@ -195,7 +195,6 @@ class Room extends React.Component{
     })
     return(
       <Paper>
-        <button onClick={this.load}>Load Data</button>
         <EnhancedTableToolbar  />
         <div >
           <Table aria-labelledby="tableTitle">

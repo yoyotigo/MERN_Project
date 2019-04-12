@@ -1,12 +1,14 @@
 const express = require('express'),
     app = express(),
     server = require('http').createServer(app),
-    io = require('socket.io')(server),
+    io = module.exports.io = require('socket.io')(server),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 5000;
-    require('./socketManager/socket')(io);
 
+    const SocketManager = require('./socketManager/socket')
+
+io.on('connection', SocketManager)
 //////////PORT CONNECTION//////////
 server.listen(port, ()=>{
     console.log('Listening on port ' + port);
@@ -34,19 +36,3 @@ app.use(function(req, res, next) {
 app.use('/chats', require('./routes/chats'));
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/rooms'));
-
-
-
-/*
-io.on('connection', (socket)=>{
-    console.log(socket.id);
-});
-
-io.on('connection', (socket)=>{
-    console.log(socket.id);
-
-    socket.on('SEND_MESSAGE', function(data){
-        io.emit('RECEIVE_MESSAGE', data);
-    })
-});
-*/
