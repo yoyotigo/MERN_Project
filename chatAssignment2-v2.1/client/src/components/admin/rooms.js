@@ -13,7 +13,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
+import Modal from 'react-awesome-modal';
 import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
@@ -147,6 +147,13 @@ EnhancedTableToolbar.propTypes = {
 EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Room extends React.Component{
+  
+  constructor(props) {
+    super(props);
+    this.openModal=this.openModal.bind(this)  
+    this.closeModal=this.closeModal.bind(this) 
+}    
+  
   state = {
     order: 'asc',
     orderBy: 'id',
@@ -154,6 +161,7 @@ class Room extends React.Component{
     data: [],
     page: 0,
     rowsPerPage: 5,
+    visible: false
   };
   createData(id,room, created, edited, status) {
     return {id,room, created, edited, status};
@@ -184,6 +192,19 @@ class Room extends React.Component{
     this.setState({ rowsPerPage: event.target.value });
   };
 
+  openModal(){
+    this.setState({
+      visible:true
+    })
+  }
+
+  closeModal(){
+    this.setState({
+      visible:false
+    })
+  }
+
+
   render(){
     const {order, orderBy, rowsPerPage, data, page } = this.state;
     let rows= []
@@ -197,6 +218,24 @@ class Room extends React.Component{
       <Paper>
         <EnhancedTableToolbar  />
         <div >
+
+        <input type="button" value="Add Room" onClick={this.openModal}/>
+            <Modal visible={this.state.visible} width="400" height="300" effect="fadeInUp" onClickAway={()=>this.closeModal}>
+            <div>
+                <form method="POST" action="/api/rooms">
+                  <label>Room name: </label>
+                  <input type='text' placeholder="Room name" required/>  <br></br>
+                  <label>Status: &emsp;&emsp;&nbsp;&nbsp; </label>
+                  <select id="sel1" required>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                  </select>
+                  <input type="submit" value="submit"/>       
+                </form>
+                <button onClick={this.closeModal}>Close</button>
+            </div>
+            </Modal>
+
           <Table aria-labelledby="tableTitle">
             <RoomHeader
               order={order}
