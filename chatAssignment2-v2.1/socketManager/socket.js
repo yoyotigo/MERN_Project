@@ -22,7 +22,6 @@ module.exports = (socket)=>{
                 console.log(i.room)
             })
         });
-        console.log(socket)
     })
     
     
@@ -63,7 +62,7 @@ module.exports = (socket)=>{
 
     })
     //User logsout
-	socket.on('LOGOUT', ()=>{
+	socket.on('LOGOUT', (res)=>{
 		Sockio.find({socket_id:socket.id},(err,socks)=>{
             if (err) throw err;
             //update disconnect time for socket in database 
@@ -108,11 +107,10 @@ module.exports = (socket)=>{
                 console.log('\n==========STORE EVENT IN DATABASE==========\nEvent Type: '+disconnectEvent.type+'\nCreated by: ' + disconnectEvent.name + '\nFor Socket: '+disconnectEvent.socket+'\nSaved to database at: '+ disconnectEvent.disconnect)
             })
 			io.emit('USER_DISCONNECTED', connectedUsers)
-		}
+        }
     })
     
     socket.on('SEND_MESSAGE', (data)=>{
-        console.log(data)
         //store new message event
             var newMessageEvent=new Elog({type:'MESSAGE SENT', name:data['author'], socket:socket.id, room:data['room']})
             newMessageEvent.save((err)=>{

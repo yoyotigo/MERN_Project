@@ -32,18 +32,13 @@ class Adminlogin  extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({
-            redirectToReferrer: true
-        });
+        this.props.history.push("/admin");
     }
 
     render() { 
-        const redirectToReferrer = this.state.redirectToReferrer;
-        if (redirectToReferrer === true){
-            this.props.history.push("/admin");
-        }
+
         return (
-            <div className="log-form2">
+            <div >
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup controlId="username">
                         <label>username</label>

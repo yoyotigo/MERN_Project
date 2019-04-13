@@ -13,7 +13,9 @@ router.get('/api/room', function(req, res, next) {
 
 /* SAVE ROOMS */
 router.post('/api/room', function(req, res, next) {
+
   Rooms.create(req.body, function (err, chat) {
+    console.log("chat:====================", chat)
     if (err) return next(err);
     res.json(chat);
   });

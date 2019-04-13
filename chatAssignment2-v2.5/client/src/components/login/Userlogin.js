@@ -20,14 +20,18 @@ class Userlogin  extends Component {
 			this.props.setUser(user)
 		}
 	}
-    handleSubmit = (e)=>{
+	handleSubmit = (e)=>{
 		e.preventDefault()
 		const { socket } = this.props
 		const { nickname } = this.state
-		socket.emit('VERIFY_USER', nickname, this.setUser)
+		if(nickname.length>=1){
+			socket.emit('VERIFY_USER', nickname, this.setUser)
+		}else{
+			alert('Invalid Username')
+		}
     }
     handleChange = (e)=>{	
-		this.setState({nickname:e.target.value})
+			this.setState({nickname:e.target.value})
 	}
 
 	setError = (error)=>{

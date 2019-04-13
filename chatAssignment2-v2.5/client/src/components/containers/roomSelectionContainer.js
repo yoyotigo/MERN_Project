@@ -23,7 +23,7 @@ class RoomDisplayContainer extends React.Component {
         const {rooms} = this.state
         let roomName=[]
         rooms.map(room=>{
-            if(room.room !== 'Main'){
+            if(room.room !== 'Main' && room.status === 'Active'){
                 return roomName.push(room.room)
             }
         })

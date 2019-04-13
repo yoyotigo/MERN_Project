@@ -37,7 +37,6 @@ export default class Landing extends Component {
 	  */	
 	  setUser = (user)=>{
 		  const { socket } = this.state
-		  console.log(socket)
 		  socket.emit('CONNECTED')
 		  socket.emit('USER_CONNECTED', user);
 		  this.setState({user})
