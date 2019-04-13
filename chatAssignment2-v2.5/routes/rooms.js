@@ -24,7 +24,7 @@ router.post("/api/room", (req,res)=>{
   console.log(data);
   data.save()
     .then(item=>{
-      res.send('room added to db');
+      res.redirect('/admin');
     })
     .catch(err=>{
       res.status(400).send("unable to save to db")

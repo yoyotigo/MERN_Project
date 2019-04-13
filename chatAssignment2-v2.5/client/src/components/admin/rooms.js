@@ -224,7 +224,7 @@ class Room extends React.Component{
             <div>
                 <form method="POST" action="/api/room">
                   <label>Room name: </label>
-                  <input type='text' placeholder="Room name" name="roomName" required/>  <br></br>
+                  <input type='text' placeholder="Room name" name="room" required/>  <br></br>
                   <label>Status: &emsp;&emsp;&nbsp;&nbsp; </label>
                   <select id="sel1" name="status" required>
                   <option>Active</option>
