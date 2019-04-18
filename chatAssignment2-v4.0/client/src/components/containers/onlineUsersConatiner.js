@@ -1,21 +1,20 @@
 import React from "react";
-import '../styles/containers.css'
 class OnlineUsersContainer extends React.Component {
 
     render() { 
         return (
             <div>
-                <div className='chatbox__user-list'>
-                    <h1>Online Users</h1> 
-                    <div>
+                 <div>
+                    ONLINE USERS
+                </div>
+                <div>
+                    <ul>
                         {
                             this.props.online.map((user, i)=>{
-                                return <div  className='chatbox__user--active' key={i}>
-                                            <p className='user'>{user}</p>
-                                        </div>
+                                return <li key={i}>{user}</li>
                             })
                         }
-                    </div>
+                    </ul>
                 </div>
             </div>
           );
