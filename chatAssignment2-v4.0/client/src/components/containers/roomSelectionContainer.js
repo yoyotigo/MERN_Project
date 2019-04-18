@@ -1,24 +1,24 @@
 import React from "react";
+import '../styles/containers.css'
 class RoomSelectionContainer extends React.Component {
 
     render() { 
         return (
             <div>
-                <div>
-                    Chat Rooms
-                </div>
-                <div>
-                    <ul>
+                <div className='chatbox__room-list'>
+                    <h1>Chat Rooms</h1>
+                    <div>
                         <div>
-                            <div id='rooms'>
                                 {
                                     this.props.rooms.map((room, i)=>{
-                                        return <li><button key={i} onClick={this.props.onChangeValue} value={room}>{room}</button></li>
+                                        return (<div  key={i}>
+                                                    <button className='btn btn-2 btn-2g' onClick={this.props.onChangeValue} value={room}>{room}</button>
+                                                </div>
+                                        )
                                     })
                                 }
-                            </div>
                         </div>
-                    </ul>
+                    </div>
                 </div>
             </div>
           );
