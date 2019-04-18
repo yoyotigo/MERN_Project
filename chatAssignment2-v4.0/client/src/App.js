@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import SendMessageContainer from './components/containers/sendMessageContatiner'
 import DisplayMessageContainer from './components/containers/displayMessageContainer'
 import OnlineUsersContainer from './components/containers/onlineUsersConatiner'
@@ -7,7 +6,7 @@ import Username from './components/username'
 import RoomSelectionContainer from './components/containers/roomSelectionContainer'
 import Adminlogin from './components/admin/Adminlogin'
 import io from "socket.io-client";
-
+import './components/styles/containers.css'
 class App extends Component {
   constructor(props){
     super(props);
@@ -62,14 +61,21 @@ addMessage = data => {
   this.setState({messages: [...this.state.messages, data]});
 }
 //send message//
+onEnter=(ev)=>{
+  if(ev.key==='Enter'){
+    this.sendMessage(ev)
+  }
+}
+  
 sendMessage = ev => {
-  ev.preventDefault();
+  ev.preventDefault()
   this.socket.emit('SEND_MESSAGE', {
       author: this.props.user,
       message: this.state.message,
       room: this.state.room
   });
   this.setState({message: ''});
+
 }
 showAdmin=()=>{
   this.setState({admin:true});
@@ -98,7 +104,7 @@ this.handleRoomChange = e =>{
 }
 
     return (
-<div>
+<div >
   {
     !user?
     <div>
@@ -107,24 +113,25 @@ this.handleRoomChange = e =>{
         !admin?
         
         <div>
-          <h1>Login</h1>
-          <button onClick={this.showAdmin}>Admin</button>
+          <button className='ghost-round2 full-width' onClick={this.showAdmin}>Admin Login</button>
           <Username change={this.handleChange} submit={this.submitUsername} user={this.state.username}/>
         </div>
         :
         <div>
-          <button onClick={this.showUser}>User</button>
+          <button className='ghost-round2 full-width' onClick={this.showUser}>Chat Login</button>
           <Adminlogin/>
         </div>
       }
     </div>
     :
-    <div id='contentWrap'>
+    <div className='container'>
+    <div className='chatbox' id='contentWrap'>
     <h1 align="center">{room} Chatroom</h1>
       <OnlineUsersContainer online={this.state.users}/>
       <RoomSelectionContainer rooms={roomName} value={this.state.room} onChangeValue={this.handleRoomChange}/>
       <DisplayMessageContainer messages={this.state.messages}/>
-      <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.sendMessage}/>    
+      <SendMessageContainer message={this.state.message} change={ev=>this.setState({message: ev.target.value})} send={this.onEnter}/>    
+    </div>
     </div>
   }
   

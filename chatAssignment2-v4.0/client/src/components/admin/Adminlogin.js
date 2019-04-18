@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import Admin from "./admin";
+import '../styles/logins.css'
 class Adminlogin  extends Component {
 
     constructor(props){
@@ -41,20 +42,28 @@ class Adminlogin  extends Component {
             <div >
                 {
                     !isAdmin?
-                    <form onSubmit={this.handleSubmit}>
-                        <span>
-                            Admin Login
-                        </span>
-                        <FormGroup controlId="username">
-                            <label>username</label>
-                            <FormControl autoFocus value={this.state.username} onChange={this.handleChange}/>
-                        </FormGroup>
-                        <FormGroup controlId="password">
-                            <label>password</label>
-                            <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
-                        </FormGroup>
-                        <Button block disabled={!this.validateForm()} type="submit">Login</Button>
-                    </form>
+                    <div>
+                        <div className='bold-line'></div>
+                        <div className='container'>
+                            <div className='window'>
+                            <div className='overlay'></div>
+                                <div className='content'>
+                                    <div className='welcome'>Admin Login</div>
+                                        <div className='input-fields'>
+                                        <form onSubmit={this.handleSubmit}>
+                                            <FormGroup controlId="username">
+                                                <FormControl className='input-line full-width'  placeholder='Username' autoFocus value={this.state.username} onChange={this.handleChange}/>
+                                            </FormGroup>
+                                            <FormGroup controlId="password">
+                                                <FormControl  className='input-line full-width' placeholder='Password' value={this.state.password} onChange={this.handleChange} type="password"/>
+                                            </FormGroup>
+                                            <Button className='ghost-round full-width' block disabled={!this.validateForm()} type="submit">Login</Button>
+                                        </form>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
                     :
                     <div>
                         <Admin/>
@@ -67,3 +76,7 @@ class Adminlogin  extends Component {
 }
  
 export default Adminlogin ;
+
+/*
+
+*/
