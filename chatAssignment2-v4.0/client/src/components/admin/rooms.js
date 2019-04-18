@@ -20,7 +20,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-
+import Popup from "reactjs-popup";
  const desc=(a, b, orderBy)=>{
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -268,6 +268,21 @@ class Room extends React.Component{
     this.setState({ page });
   };
 
+  handleUpdate= (eid) => {
+    // Array.prototype.filter returns new array
+    // so we aren't mutating state here
+    const arrayCopy = this.state.data.filter((row) => {
+      return row._id !== eid
+    });
+    if(eid!=='5cb60f39425e3b7e58103e86'){
+      axios.put('http://localhost:5000/api/room/update/'+eid)
+      this.setState({data:arrayCopy,  selected: []})
+    }else{
+      alert('Cannot Update Main Chat Room')
+    }
+
+  };
+
   handleDelete= (eid) => {
     // Array.prototype.filter returns new array
     // so we aren't mutating state here
@@ -313,7 +328,7 @@ class Room extends React.Component{
     })*/
     return(
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} delId={()=>this.handleDelete(id)}/>
+        <EnhancedTableToolbar numSelected={selected.length} delId={()=>this.handleDelete(id)} />
         <div className={classes.tableWrapper}>
 
         <input type="button" value="Add Room" onClick={this.openModal}/>
@@ -367,7 +382,24 @@ class Room extends React.Component{
                       <TableCell align="right">{n.created}</TableCell>
                       <TableCell align="right">{n.edited}</TableCell>
                       <TableCell align="right">{n.status}</TableCell>
-                      <TableCell align="right"><button >Edit</button></TableCell>
+                      
+                      <TableCell>
+                        <Popup trigger={<button>Edit</button>}>
+                        <div>
+                        <form method="POST" action="/api/room/update/:id">
+                        <label>Room name: </label>
+                        <input type='text' placeholder="Room name" name="room" required/>  <br></br>
+                  <label>Status: &emsp;&emsp;&nbsp;&nbsp; </label>
+                  <select id="sel1" name="status" required>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                  </select>
+                  <input type="submit" value="submit" onClick={()=>this.handleUpdate(id)}/>       
+                </form>
+                        </div>
+                        </Popup> 
+                      </TableCell>
+
                     </TableRow>
                   );
                 })}

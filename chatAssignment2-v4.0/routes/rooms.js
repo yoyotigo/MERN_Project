@@ -27,6 +27,8 @@ router.post("/api/room", (req,res)=>{
   )
 });
 
+
+
 router.get('/api/room/delete/:id', function(req, res, next) {
   Rooms.findByIdAndDelete({_id:req.params.id},(err, results)=>{
     if(err) throw err;
@@ -34,6 +36,25 @@ router.get('/api/room/delete/:id', function(req, res, next) {
     res.send(JSON.stringify(results, null, 4));
   });
 }); 
+
+/* UPDATE ROOM */
+router.get('/api/room/update/:id', function(req,res,next){
+  Rooms.findByIdAndUpdate({_id:req.params.id},(err, results)=>{
+    if(err) throw err;
+    res.header("Content-Type",'application/json');
+    res.send(JSON.stringify(results, null, 4));
+  });
+});
+
+
+/*
+router.put('/api/room/:id', function(req,res, next){
+  Rooms.findByIdAndUpdate(req.params.id, req.body, function(err,post){
+    if(err) return next(err);
+    res.json(post);
+  });
+});*/
+
 
 /*router.post('/api/room', function(req, res, next) {
   Rooms.create(req.body, function (err, chat) {
